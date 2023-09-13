@@ -1,0 +1,9 @@
+@font-face {
+  font-family: eczar;
+  src: url("../src/fonts/Eczar-Regular.ttf");
+}
+
+.hello {
+  font-family: eczar;
+  color: red;
+}
