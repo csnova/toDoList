@@ -8,7 +8,81 @@
   </head>
   <body>
     <div id="content">
-      <h1 class="hello">Hello World!</h1>
+      <div class="container">
+        <div class="box">
+          <div class="spiralBox">
+            <img class="spiral" src="../src/images/spiral.jpg" />
+          </div>
+          <div class="header">
+            <h1 class="title">To Do List</h1>
+          </div>
+          <div class="sideBar">
+            <div class="sideBarBox">
+              <ul class="list">
+                <li class="allList">
+                  <button class="allButton listButton">All</button>
+                </li>
+                <li class="projectList">
+                  <button class="projectButton listButton">Project</button>
+                </li>
+                <ul class="projects">
+                  <li class="work">
+                    <button class="workButton listButton">Work</button>
+                  </li>
+                  <li class="house">
+                    <button class="houseButton listButton">House</button>
+                  </li>
+                </ul>
+              </ul>
+              <button id="addButton" class="newProject">
+                <img class="addButton" src="../src/images/add.png" />New Project
+              </button>
+            </div>
+          </div>
+          <div class="info">
+            <div class="infoBox">
+              <div class="taskBox">
+                <div id="task1" class="task">
+                  <input class="checkbox" type="checkbox" id="compeleted" />
+                  <h2 class="task1Title">Go Shopping</h2>
+                  <button id="task1Button" class="taskButton">Info</button>
+                  <button class="taskButton">
+                    <img class="editButton" src="../src/images/edit.png" />
+                  </button>
+                  <button class="taskButton">
+                    <img class="deleteButton" src="../src/images/delete.png" />
+                  </button>
+                </div>
+                <div id="task2" class="task">
+                  <input class="checkbox" type="checkbox" id="compeleted" />
+                  <h2 class="task2Title">Go Shopping</h2>
+                  <button id="task2Button" class="taskButton">Info</button>
+                  <button class="taskButton">
+                    <img class="editButton" src="../src/images/edit.png" />
+                  </button>
+                  <button class="taskButton">
+                    <img class="deleteButton" src="../src/images/delete.png" />
+                  </button>
+                </div>
+                <div id="task3" class="task">
+                  <input class="checkbox" type="checkbox" id="compeleted" />
+                  <h2 class="task3Title">Go Shopping</h2>
+                  <button id="task3Button" class="taskButton">Info</button>
+                  <button class="taskButton">
+                    <img class="editButton" src="../src/images/edit.png" />
+                  </button>
+                  <button class="taskButton">
+                    <img class="deleteButton" src="../src/images/delete.png" />
+                  </button>
+                </div>
+              </div>
+              <button id="addButton" class="newTask">
+                <img class="addButton" src="../src/images/add.png" />New Task
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
   <script src="./index.bundle.js"></script>
