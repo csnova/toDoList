@@ -1,3 +1,5 @@
+const allTasks = [];
+
 function printMe() {
   console.log("I get called from print.js!");
 }
@@ -16,4 +18,9 @@ class task {
   }
 }
 
-export { task, printMe };
+function addTaskToArray(project, title, description, priority, dueDate) {
+  const newTask = new task(project, title, description, priority, dueDate);
+  allTasks.push(newTask);
+}
+
+export { task, printMe, addTaskToArray, allTasks };

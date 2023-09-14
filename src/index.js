@@ -1,9 +1,8 @@
 import "./style.css";
-import { printMe, task } from "./print.js";
+import { addTaskToArray, printMe, task, allTasks } from "./print.js";
 import { compareAsc, format } from "date-fns";
 
-// Global Variables
-const allTasks = [];
-
 printMe();
+
+addTaskToArray("none", "Shopping", "Need Milk and Eggs", "Low", "12/12/12");
 console.table(allTasks);
