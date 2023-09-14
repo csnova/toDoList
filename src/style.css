@@ -63,6 +63,7 @@ html {
   background-color: rgb(69, 163, 143);
   margin: 10px;
   height: 630px;
+  width: 180px;
   border: 1px solid black;
   border-radius: 5px;
   display: flex;
