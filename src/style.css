@@ -124,7 +124,7 @@ li {
 
 .task {
   display: grid;
-  grid-template-columns: 100px 400px 50px 50px 50px;
+  grid-template-columns: 50px 400px 50px 50px 50px;
   grid-gap: 10px;
   border: 1px solid black;
   border-radius: 10px;
@@ -142,21 +142,33 @@ h2 {
   font-size: 20px;
 }
 
-.newProject {
+#newProject {
   align-self: center;
   height: 30px;
-  width: 150px;
+  width: 160px;
+  border-radius: 10px;
 }
 
-.newTask {
+#newProject:hover {
+  background-color: rgba(149, 160, 157, 0.267);
+  border: 1px solid grey;
+}
+
+#newTask {
   align-self: end;
   height: 30px;
-  width: 130px;
+  width: 140px;
+  border-radius: 10px;
 }
 
-#addButton {
+#newTask:hover {
+  background-color: white;
+  border: 1px solid grey;
+}
+
+.addButton {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin: 10px;
   font-size: 20px;
