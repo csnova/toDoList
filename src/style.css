@@ -141,7 +141,7 @@ li {
   display: grid;
   grid-template-columns: 50px 400px 50px 50px 50px;
   grid-gap: 10px;
-  border: 1px solid var(--border-color);
+  border: 2px solid var(--border-color);
   border-radius: 10px;
   justify-content: center;
   align-items: center;

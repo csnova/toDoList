@@ -8,10 +8,7 @@ import Delete from "./images/delete.png";
 import Add from "./images/add.png";
 
 const allTasks = [];
-
-function printMe() {
-  console.log("I get called from print.js!");
-}
+let allProjects = [];
 
 class task {
   constructor(project, title, description, priority, dueDate) {
@@ -92,22 +89,21 @@ function printAll() {
   const projects = document.createElement("ul");
   projects.classList.add("projects");
   list.appendChild(projects);
-  const work = document.createElement("li");
-  work.classList.add("work");
-  projects.appendChild(work);
-  const workButton = document.createElement("BUTTON");
-  workButton.classList.add("workButton");
-  workButton.classList.add("listButton");
-  workButton.textContent = "Work";
-  work.appendChild(workButton);
-  const house = document.createElement("li");
-  house.classList.add("house");
-  projects.appendChild(house);
-  const houseButton = document.createElement("BUTTON");
-  houseButton.classList.add("houseButton");
-  houseButton.classList.add("listButton");
-  houseButton.textContent = "House";
-  house.appendChild(houseButton);
+
+  makeProjectList();
+  let j = 0;
+  for (const project of allProjects) {
+    const newListItem = document.createElement("li");
+    newListItem.classList.add(`${project}`);
+    projects.appendChild(newListItem);
+    const newProjectButton = document.createElement("BUTTON");
+    newProjectButton.classList.add(`${project}Button`);
+    newProjectButton.classList.add("listButton");
+    newProjectButton.textContent = `${project}`;
+    newListItem.appendChild(newProjectButton);
+    j++;
+  }
+
   const newProject = document.createElement("BUTTON");
   newProject.classList.add("addButton");
   newProject.setAttribute(`id`, `newProject`);
@@ -130,11 +126,19 @@ function printAll() {
 
   let i = 0;
   for (const task of allTasks) {
-    // Creates a new div for each book to be displayed it
     document.querySelector(".taskBox");
     const newDiv = document.createElement("div");
     newDiv.classList.add("task");
     newDiv.setAttribute(`id`, `task${i}`);
+    if (task.priority == "High") {
+      newDiv.style.borderColor = "red";
+    }
+    if (task.priority == "Medium") {
+      newDiv.style.borderColor = "orange";
+    }
+    if (task.priority == "Low") {
+      newDiv.style.borderColor = "yellow";
+    }
     taskBox.appendChild(newDiv);
     const taskCheck = document.createElement("INPUT");
     taskCheck.classList.add("checkbox");
@@ -168,11 +172,26 @@ function printAll() {
   }
 }
 
+function makeProjectList() {
+  let i = 0;
+  for (const task of allTasks) {
+    let value = task.project;
+    if (allProjects.includes(value)) {
+      i++;
+    } else {
+      allProjects.push(value);
+      i++;
+    }
+  }
+  allProjects = allProjects.sort();
+  console.table(allProjects);
+}
+
 export {
   task,
-  printMe,
   addTaskToArray,
   allTasks,
   removeElementsByClass,
   printAll,
+  makeProjectList,
 };
