@@ -39,7 +39,7 @@ function removeElementsByClass(className) {
   }
 }
 
-function printDisplay() {
+function printAll() {
   const website = document.querySelector(`#content`);
   const container = document.createElement("div");
   container.classList.add("container");
@@ -128,114 +128,44 @@ function printDisplay() {
   taskBox.classList.add("taskBox");
   infoBox.appendChild(taskBox);
 
-  const task1 = document.createElement("div");
-  task1.classList.add("task");
-  task1.setAttribute(`id`, `task1`);
-  taskBox.appendChild(task1);
-  const task1Check = document.createElement("INPUT");
-  task1Check.classList.add("checkbox");
-  task1Check.setAttribute("type", "checkbox");
-  task1.setAttribute(`id`, `completedTask1`);
-  task1.appendChild(task1Check);
-  const task1Title = document.createElement("h2");
-  task1Title.classList.add("task1Title");
-  task1Title.textContent = "Go Shopping";
-  task1.appendChild(task1Title);
-  const task1Button = document.createElement("BUTTON");
-  task1Button.classList.add("taskButton");
-  task1Button.setAttribute(`id`, `task1Button`);
-  task1Button.textContent = "Info";
-  task1.appendChild(task1Button);
-  const editButton1Box = document.createElement("BUTTON");
-  editButton1Box.classList.add("taskButton");
-  task1.appendChild(editButton1Box);
-  const editButton1Img = document.createElement("img");
-  editButton1Img.src = Edit;
-  editButton1Img.classList.add("editButton");
-  editButton1Box.appendChild(editButton1Img);
-  const deleteButton1Box = document.createElement("BUTTON");
-  deleteButton1Box.classList.add("taskButton");
-  task1.appendChild(deleteButton1Box);
-  const deleteButton1Img = document.createElement("img");
-  deleteButton1Img.src = Delete;
-  deleteButton1Img.classList.add("deleteButton");
-  deleteButton1Box.appendChild(deleteButton1Img);
-
-  const task2 = document.createElement("div");
-  task2.classList.add("task");
-  task2.setAttribute(`id`, `task2`);
-  taskBox.appendChild(task2);
-  const task2Check = document.createElement("INPUT");
-  task2Check.classList.add("checkbox");
-  task2Check.setAttribute("type", "checkbox");
-  task2.setAttribute(`id`, `completedTask2`);
-  task2.appendChild(task2Check);
-  const task2Title = document.createElement("h2");
-  task2Title.classList.add("task2Title");
-  task2Title.textContent = "Go Shopping";
-  task2.appendChild(task2Title);
-  const task2Button = document.createElement("BUTTON");
-  task2Button.classList.add("taskButton");
-  task2Button.setAttribute(`id`, `task2Button`);
-  task2Button.textContent = "Info";
-  task2.appendChild(task2Button);
-  const editButton2Box = document.createElement("BUTTON");
-  editButton2Box.classList.add("taskButton");
-  task2.appendChild(editButton2Box);
-  const editButton2Img = document.createElement("img");
-  editButton2Img.src = Edit;
-  editButton2Img.classList.add("editButton");
-  editButton2Box.appendChild(editButton2Img);
-  const deleteButton2Box = document.createElement("BUTTON");
-  deleteButton2Box.classList.add("taskButton");
-  task2.appendChild(deleteButton2Box);
-  const deleteButton2Img = document.createElement("img");
-  deleteButton2Img.src = Delete;
-  deleteButton2Img.classList.add("deleteButton");
-  deleteButton2Box.appendChild(deleteButton2Img);
-
-  const task3 = document.createElement("div");
-  task3.classList.add("task");
-  task3.setAttribute(`id`, `task3`);
-  taskBox.appendChild(task3);
-  const task3Check = document.createElement("INPUT");
-  task3Check.classList.add("checkbox");
-  task3Check.setAttribute("type", "checkbox");
-  task3.setAttribute(`id`, `completedTask3`);
-  task3.appendChild(task3Check);
-  const task3Title = document.createElement("h2");
-  task3Title.classList.add("task3Title");
-  task3Title.textContent = "Go Shopping";
-  task3.appendChild(task3Title);
-  const task3Button = document.createElement("BUTTON");
-  task3Button.classList.add("taskButton");
-  task3Button.setAttribute(`id`, `task3Button`);
-  task3Button.textContent = "Info";
-  task3.appendChild(task3Button);
-  const editButton3Box = document.createElement("BUTTON");
-  editButton3Box.classList.add("taskButton");
-  task3.appendChild(editButton3Box);
-  const editButton3Img = document.createElement("img");
-  editButton3Img.src = Edit;
-  editButton3Img.classList.add("editButton");
-  editButton3Box.appendChild(editButton3Img);
-  const deleteButton3Box = document.createElement("BUTTON");
-  deleteButton3Box.classList.add("taskButton");
-  task3.appendChild(deleteButton3Box);
-  const deleteButton3Img = document.createElement("img");
-  deleteButton3Img.src = Delete;
-  deleteButton3Img.classList.add("deleteButton");
-  deleteButton3Box.appendChild(deleteButton3Img);
-
-  const newTask = document.createElement("BUTTON");
-  newTask.classList.add("addButton");
-  newTask.setAttribute(`id`, `newTask`);
-  newTask.textContent = "New Task";
-  infoBox.appendChild(newTask);
-  const addButton2 = document.createElement("img");
-  addButton2.src = Add;
-  addButton2.classList.add("addButton2");
-  newTask.appendChild(addButton2);
+  let i = 0;
+  for (const task of allTasks) {
+    // Creates a new div for each book to be displayed it
+    document.querySelector(".taskBox");
+    const newDiv = document.createElement("div");
+    newDiv.classList.add("task");
+    newDiv.setAttribute(`id`, `task${i}`);
+    taskBox.appendChild(newDiv);
+    const taskCheck = document.createElement("INPUT");
+    taskCheck.classList.add("checkbox");
+    taskCheck.setAttribute("type", "checkbox");
+    taskCheck.setAttribute(`id`, `completedTask${i}`);
+    newDiv.appendChild(taskCheck);
+    const taskTitle = document.createElement("h2");
+    taskTitle.classList.add(`task${i}Title`);
+    taskTitle.textContent = `${task.title}`;
+    newDiv.appendChild(taskTitle);
+    const taskButton = document.createElement("BUTTON");
+    taskButton.classList.add("taskButton");
+    taskButton.setAttribute(`id`, `task${i}Button`);
+    taskButton.textContent = "Info";
+    newDiv.appendChild(taskButton);
+    const editButtonBox = document.createElement("BUTTON");
+    editButtonBox.classList.add("taskButton");
+    newDiv.appendChild(editButtonBox);
+    const editButtonImg = document.createElement("img");
+    editButtonImg.src = Edit;
+    editButtonImg.classList.add("editButton");
+    editButtonBox.appendChild(editButtonImg);
+    const deleteButtonBox = document.createElement("BUTTON");
+    deleteButtonBox.classList.add("taskButton");
+    newDiv.appendChild(deleteButtonBox);
+    const deleteButtonImg = document.createElement("img");
+    deleteButtonImg.src = Delete;
+    deleteButtonImg.classList.add("deleteButton");
+    deleteButtonBox.appendChild(deleteButtonImg);
+    i++;
+  }
 }
 
 export {
@@ -244,5 +174,5 @@ export {
   addTaskToArray,
   allTasks,
   removeElementsByClass,
-  printDisplay,
+  printAll,
 };
