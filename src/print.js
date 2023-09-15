@@ -161,7 +161,7 @@ function printAll(idName) {
     taskButton.setAttribute(`id`, `task${i}Button`);
     taskButton.textContent = "Info";
     taskButton.addEventListener("click", () => {
-      displayModal(`task${index}Button`);
+      displayModal(`task${index}Button`, `info`, currentArray, index);
     });
     newDiv.appendChild(taskButton);
     const editButtonBox = document.createElement("BUTTON");
@@ -216,9 +216,10 @@ function changeProject(idName) {
   printAll(idName);
 }
 
-function displayModal(idName) {
-  //makes the modal
+function displayModal(idName, typeOfModal, currentArray, index) {
+  //Creates the Modal
   const modal = document.getElementById("myModal");
+  modal.style.display = "block";
   const modalContainer = document.createElement("div");
   modalContainer.classList.add("modal-content");
   modal.appendChild(modalContainer);
@@ -226,11 +227,49 @@ function displayModal(idName) {
   modalSpan.classList.add("close");
   modalSpan.innerHTML = "X";
   modalContainer.appendChild(modalSpan);
-  const modalText = document.createElement("p");
-  modalText.classList.add("modal-text");
-  modalText.textContent = `${idName}`;
-  modalContainer.appendChild(modalText);
-  modal.style.display = "block";
+  const modalSection = document.createElement("div");
+  modalSection.classList.add("modal-section");
+  modalContainer.appendChild(modalSection);
+  const modalTitle = document.createElement("p");
+  modalTitle.classList.add("modal-title");
+  modalTitle.textContent = `Title:`;
+  modalSection.appendChild(modalTitle);
+  const modalTitleText = document.createElement("p");
+  modalTitleText.classList.add("modal-title-text");
+  modalTitleText.textContent = `${currentArray[index].title}`;
+  modalSection.appendChild(modalTitleText);
+  const modalProject = document.createElement("p");
+  modalProject.classList.add("modal-project");
+  modalProject.textContent = `Project:`;
+  modalSection.appendChild(modalProject);
+  const modalProjectText = document.createElement("p");
+  modalProjectText.classList.add("modal-project-text");
+  modalProjectText.textContent = `${currentArray[index].project}`;
+  modalSection.appendChild(modalProjectText);
+  const modalPriority = document.createElement("p");
+  modalPriority.classList.add("modal-priority");
+  modalPriority.textContent = `Priority:`;
+  modalSection.appendChild(modalPriority);
+  const modalPriorityText = document.createElement("p");
+  modalPriorityText.classList.add("modal-priority-text");
+  modalPriorityText.textContent = `${currentArray[index].priority}`;
+  modalSection.appendChild(modalPriorityText);
+  const modalDueDate = document.createElement("p");
+  modalDueDate.classList.add("modal-due-date");
+  modalDueDate.textContent = `Due Date:`;
+  modalSection.appendChild(modalDueDate);
+  const modalDueDateText = document.createElement("p");
+  modalDueDateText.classList.add("modal-due-date-text");
+  modalDueDateText.textContent = `${currentArray[index].dueDate}`;
+  modalSection.appendChild(modalDueDateText);
+  const modalDescription = document.createElement("p");
+  modalDescription.classList.add("modal-description");
+  modalDescription.textContent = `Description:`;
+  modalSection.appendChild(modalDescription);
+  const modalDescriptionText = document.createElement("p");
+  modalDescriptionText.classList.add("modal-description-text");
+  modalDescriptionText.textContent = `${currentArray[index].description}`;
+  modalSection.appendChild(modalDescriptionText);
 
   // Get the button that opens the modal
   const btn = document.getElementById(`${idName}`);
