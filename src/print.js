@@ -132,6 +132,7 @@ function printAll(idName) {
   }
   let i = 0;
   for (const task of currentArray) {
+    const index = i;
     document.querySelector(".taskBox");
     const newDiv = document.createElement("div");
     newDiv.classList.add("task");
@@ -159,6 +160,9 @@ function printAll(idName) {
     taskButton.classList.add("taskButton");
     taskButton.setAttribute(`id`, `task${i}Button`);
     taskButton.textContent = "Info";
+    taskButton.addEventListener("click", () => {
+      displayModal(`task${index}Button`);
+    });
     newDiv.appendChild(taskButton);
     const editButtonBox = document.createElement("BUTTON");
     editButtonBox.classList.add("taskButton");
@@ -169,7 +173,6 @@ function printAll(idName) {
     editButtonBox.appendChild(editButtonImg);
     const deleteButtonBox = document.createElement("BUTTON");
     deleteButtonBox.classList.add("taskButton");
-    const index = i;
     deleteButtonBox.addEventListener("click", () => {
       allTasks.splice(index, 1);
       removeElementsByClass("container");
@@ -211,6 +214,43 @@ function makeProjectList() {
 function changeProject(idName) {
   removeElementsByClass("container");
   printAll(idName);
+}
+
+function displayModal(idName) {
+  //makes the modal
+  const modal = document.getElementById("myModal");
+  const modalContainer = document.createElement("div");
+  modalContainer.classList.add("modal-content");
+  modal.appendChild(modalContainer);
+  const modalSpan = document.createElement("span");
+  modalSpan.classList.add("close");
+  modalSpan.innerHTML = "X";
+  modalContainer.appendChild(modalSpan);
+  const modalText = document.createElement("p");
+  modalText.classList.add("modal-text");
+  modalText.textContent = `${idName}`;
+  modalContainer.appendChild(modalText);
+  modal.style.display = "block";
+
+  // Get the button that opens the modal
+  const btn = document.getElementById(`${idName}`);
+
+  // Get the <span> element that closes the modal
+  const span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = "none";
+    removeElementsByClass("modal-content");
+  };
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+      removeElementsByClass("modal-content");
+    }
+  };
 }
 
 export {
