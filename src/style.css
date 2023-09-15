@@ -1,6 +1,16 @@
 * {
   font-family: eczar;
-  /* border: 1px solid black; */
+}
+
+:root {
+  /* example variable declaration */
+  --main-color-background: red;
+  --light-color-background: rgb(161, 218, 227);
+  --lightest-color-background: rgb(240, 240, 240);
+  --task-background-color: white;
+  --shadow-color: rgba(165, 165, 165, 0.5);
+  --accent-color: rgb(69, 163, 143);
+  --border-color: rgb(80, 80, 80);
 }
 
 @font-face {
@@ -9,7 +19,7 @@
 }
 
 html {
-  background-color: rgb(161, 218, 227);
+  background-color: var(--light-color-background);
 }
 
 .container {
@@ -26,7 +36,7 @@ html {
   display: grid;
   grid-template-columns: 100px 220px 780px;
   grid-template-rows: 100px 650px;
-  box-shadow: 30px 15px 5px rgba(165, 165, 165, 0.5);
+  box-shadow: 30px 15px 5px var(--shadow-color);
 }
 
 .spiralBox {
@@ -48,7 +58,7 @@ html {
   grid-row-end: 2;
   background-image: url("../src/images/notebookPaper.jpg");
   background-repeat: no-repeat;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--border-color);
 }
 
 .sideBar {
@@ -60,11 +70,11 @@ html {
 }
 
 .sideBarBox {
-  background-color: rgb(69, 163, 143);
+  background-color: var(--accent-color);
   margin: 10px;
   height: 630px;
   width: 180px;
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -98,7 +108,7 @@ li {
 }
 
 .listButton:hover {
-  color: rgb(63, 63, 63);
+  color: var(--border-color);
 }
 
 .info {
@@ -110,9 +120,9 @@ li {
 }
 
 .infoBox {
-  background-color: rgb(240, 240, 240);
+  background-color: var(--lightest-color-background);
   margin: 10px;
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   height: 630px;
   display: flex;
@@ -131,11 +141,11 @@ li {
   display: grid;
   grid-template-columns: 50px 400px 50px 50px 50px;
   grid-gap: 10px;
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: var(--task-background-color);
 }
 
 .checkbox {
@@ -180,7 +190,7 @@ h2 {
 }
 
 .taskButton:hover {
-  background-color: rgb(69, 163, 143);
+  background-color: var(--accent-color);
 }
 
 .editButton,
