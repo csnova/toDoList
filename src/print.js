@@ -176,6 +176,15 @@ function printAll() {
     deleteButtonBox.appendChild(deleteButtonImg);
     i++;
   }
+  const newTask = document.createElement("BUTTON");
+  newTask.classList.add("addButton");
+  newTask.setAttribute(`id`, `newTask`);
+  newTask.textContent = "New Task";
+  infoBox.appendChild(newTask);
+  const addButton2 = document.createElement("img");
+  addButton2.src = Add;
+  addButton2.classList.add("addButton2");
+  newTask.appendChild(addButton2);
 }
 
 function makeProjectList() {
@@ -191,7 +200,6 @@ function makeProjectList() {
     }
   }
   allProjects = allProjects.sort();
-  console.table(allProjects);
 }
 
 export {
