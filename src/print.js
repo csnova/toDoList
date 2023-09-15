@@ -1,6 +1,4 @@
 import Spiral from "./images/spiral.jpg";
-import Paper from "./images/notebookPaper.jpg";
-// <a href="https://www.flaticon.com/free-icons/edit" title="edit icons">Edit icons created by Pixel perfect - Flaticon</a>
 import Edit from "./images/edit.png";
 // <a href="https://www.flaticon.com/free-icons/delete" title="delete icons">Delete icons created by Ilham Fitrotul Hayat - Flaticon</a>
 import Delete from "./images/delete.png";
@@ -36,7 +34,7 @@ function removeElementsByClass(className) {
   }
 }
 
-function printAll() {
+function printAll(idName) {
   const website = document.querySelector(`#content`);
   const container = document.createElement("div");
   container.classList.add("container");
@@ -44,7 +42,6 @@ function printAll() {
   const box = document.createElement("div");
   box.classList.add("box");
   container.appendChild(box);
-
   const spiralBox = document.createElement("div");
   spiralBox.classList.add("spiralBox");
   box.appendChild(spiralBox);
@@ -52,7 +49,6 @@ function printAll() {
   spiral.src = Spiral;
   spiral.classList.add("spiral");
   spiralBox.appendChild(spiral);
-
   const header = document.createElement("div");
   header.classList.add("header");
   box.appendChild(header);
@@ -60,7 +56,6 @@ function printAll() {
   title.classList.add("title");
   title.textContent = "To Do List";
   header.appendChild(title);
-
   const sideBar = document.createElement("div");
   sideBar.classList.add("sideBar");
   box.appendChild(sideBar);
@@ -74,7 +69,7 @@ function printAll() {
   allList.classList.add("allList");
   list.appendChild(allList);
   const allButton = document.createElement("BUTTON");
-  allButton.classList.add("allButton");
+  allButton.setAttribute(`id`, `allButton`);
   allButton.classList.add("listButton");
   allButton.textContent = "All";
   allList.appendChild(allButton);
@@ -82,14 +77,13 @@ function printAll() {
   projectList.classList.add("projectList");
   list.appendChild(projectList);
   const projectButton = document.createElement("BUTTON");
-  projectButton.classList.add("projectButton");
+  projectButton.setAttribute(`id`, `projectButton`);
   projectButton.classList.add("listButton");
   projectButton.textContent = "Project";
   projectList.appendChild(projectButton);
   const projects = document.createElement("ul");
   projects.classList.add("projects");
   list.appendChild(projects);
-
   makeProjectList();
   let j = 0;
   for (const project of allProjects) {
@@ -97,13 +91,18 @@ function printAll() {
     newListItem.classList.add(`${project}`);
     projects.appendChild(newListItem);
     const newProjectButton = document.createElement("BUTTON");
-    newProjectButton.classList.add(`${project}Button`);
+    newProjectButton.setAttribute(`id`, `${project}`);
     newProjectButton.classList.add("listButton");
     newProjectButton.textContent = `${project}`;
     newListItem.appendChild(newProjectButton);
     j++;
   }
-
+  const buttons = list.querySelectorAll("button");
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      changeProject(button.id);
+    });
+  });
   const newProject = document.createElement("BUTTON");
   newProject.classList.add("addButton");
   newProject.setAttribute(`id`, `newProject`);
@@ -113,7 +112,6 @@ function printAll() {
   addButton1.src = Add;
   addButton1.classList.add("addButton1");
   newProject.appendChild(addButton1);
-
   const info = document.createElement("div");
   info.classList.add("info");
   box.appendChild(info);
@@ -123,9 +121,17 @@ function printAll() {
   const taskBox = document.createElement("div");
   taskBox.classList.add("taskBox");
   infoBox.appendChild(taskBox);
-
+  let currentArray = [];
+  if (idName == "allButton") {
+    currentArray = allTasks;
+  } else if (idName == "projectButton") {
+    currentArray = allTasks;
+  } else {
+    const idFilter = allTasks.filter((task) => task.project == idName);
+    currentArray = idFilter;
+  }
   let i = 0;
-  for (const task of allTasks) {
+  for (const task of currentArray) {
     document.querySelector(".taskBox");
     const newDiv = document.createElement("div");
     newDiv.classList.add("task");
@@ -134,10 +140,10 @@ function printAll() {
       newDiv.style.borderColor = "red";
     }
     if (task.priority == "Medium") {
-      newDiv.style.borderColor = "orange";
+      newDiv.style.borderColor = "darkOrange";
     }
     if (task.priority == "Low") {
-      newDiv.style.borderColor = "yellow";
+      newDiv.style.borderColor = "gold";
     }
     taskBox.appendChild(newDiv);
     const taskCheck = document.createElement("INPUT");
@@ -202,6 +208,11 @@ function makeProjectList() {
   allProjects = allProjects.sort();
 }
 
+function changeProject(idName) {
+  removeElementsByClass("container");
+  printAll(idName);
+}
+
 export {
   task,
   addTaskToArray,
@@ -209,4 +220,5 @@ export {
   removeElementsByClass,
   printAll,
   makeProjectList,
+  changeProject,
 };

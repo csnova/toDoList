@@ -26,4 +26,4 @@ addTaskToArray(
   "09/09/09"
 );
 
-printAll();
+printAll("allButton");
