@@ -115,7 +115,7 @@ function printDisplay() {
   sideBarBox.appendChild(newProject);
   const addButton1 = document.createElement("img");
   addButton1.src = Add;
-  addButton1.classList.add("addButton");
+  addButton1.classList.add("addButton1");
   newProject.appendChild(addButton1);
 
   const info = document.createElement("div");
@@ -234,7 +234,7 @@ function printDisplay() {
   infoBox.appendChild(newTask);
   const addButton2 = document.createElement("img");
   addButton2.src = Add;
-  addButton2.classList.add("addButton");
+  addButton2.classList.add("addButton2");
   newTask.appendChild(addButton2);
 }
 

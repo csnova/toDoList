@@ -97,6 +97,10 @@ li {
   outline: none;
 }
 
+.listButton:hover {
+  color: rgb(63, 63, 63);
+}
+
 .info {
   background-image: url("../src/images/notebookPaperRight.jpg");
   grid-column-start: 3;
@@ -150,21 +154,11 @@ h2 {
   border-radius: 10px;
 }
 
-#newProject:hover {
-  background-color: rgba(149, 160, 157, 0.267);
-  border: 1px solid grey;
-}
-
 #newTask {
   align-self: end;
   height: 30px;
   width: 140px;
   border-radius: 10px;
-}
-
-#newTask:hover {
-  background-color: white;
-  border: 1px solid grey;
 }
 
 .addButton {
@@ -191,6 +185,12 @@ h2 {
 
 .editButton,
 .deleteButton,
-.addButton {
+.addButton,
+.addButton1,
+.addButton2 {
   height: 20px;
+}
+
+.addButton:hover {
+  opacity: 0.6;
 }
