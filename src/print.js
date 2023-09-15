@@ -163,6 +163,12 @@ function printAll() {
     editButtonBox.appendChild(editButtonImg);
     const deleteButtonBox = document.createElement("BUTTON");
     deleteButtonBox.classList.add("taskButton");
+    const index = i;
+    deleteButtonBox.addEventListener("click", () => {
+      allTasks.splice(index, 1);
+      removeElementsByClass("container");
+      printAll();
+    });
     newDiv.appendChild(deleteButtonBox);
     const deleteButtonImg = document.createElement("img");
     deleteButtonImg.src = Delete;
@@ -173,6 +179,7 @@ function printAll() {
 }
 
 function makeProjectList() {
+  allProjects = [];
   let i = 0;
   for (const task of allTasks) {
     let value = task.project;
