@@ -7,6 +7,7 @@ import Add from "./images/add.png";
 
 const allTasks = [];
 let allProjects = [];
+let lookUp = 1;
 
 class task {
   constructor(project, title, description, priority, dueDate, checked) {
@@ -16,7 +17,7 @@ class task {
     this.priority = priority;
     this.dueDate = dueDate;
     this.checked = checked;
-    this.spot = allTasks.length;
+    this.spot = lookUp++;
   }
   taskInfo() {
     let info = `Project: ${project} Title: ${title} Description: ${description} Priority: ${priority} Due Date: ${dueDate} Finished: ${checked}`;
@@ -219,13 +220,17 @@ function printAll(idName) {
     editButtonBox.appendChild(editButtonImg);
     const deleteButtonBox = document.createElement("BUTTON");
     deleteButtonBox.classList.add("taskButton");
+
     deleteButtonBox.addEventListener("click", () => {
-      console.log(currentArray);
-      const currentSpot = currentArray[index].spot;
+      const currentSpot = allTasks.findIndex(
+        (task) => task.spot === currentArray[index].spot
+      );
       allTasks.splice(currentSpot, 1);
       removeElementsByClass("container");
       printAll(currentMenu);
+      console.table(allTasks);
     });
+
     newDiv.appendChild(deleteButtonBox);
     const deleteButtonImg = document.createElement("img");
     deleteButtonImg.src = Delete;
