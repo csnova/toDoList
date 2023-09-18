@@ -209,6 +209,9 @@ function printAll(idName) {
     newDiv.appendChild(taskButton);
     const editButtonBox = document.createElement("BUTTON");
     editButtonBox.classList.add("taskButton");
+    editButtonBox.addEventListener("click", () => {
+      displayModal(`edit${index}Button`, `edit`, currentArray, index);
+    });
     newDiv.appendChild(editButtonBox);
     const editButtonImg = document.createElement("img");
     editButtonImg.src = Edit;
@@ -422,7 +425,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     modalTaskDescription.classList.add("modal-task-description-project");
     modalTaskDescription.textContent = `Task Description:`;
     form.appendChild(modalTaskDescription);
-    const modalTaskDescriptionInput = document.createElement("INPUT");
+    const modalTaskDescriptionInput = document.createElement("TEXTAREA");
     modalTaskDescriptionInput.setAttribute("type", "text");
     modalTaskDescriptionInput.classList.add("modal-description-input-project");
     form.appendChild(modalTaskDescriptionInput);
@@ -527,13 +530,136 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     modalTaskDescription.classList.add("modal-description-task");
     modalTaskDescription.textContent = `Task Description:`;
     form.appendChild(modalTaskDescription);
-    const modalTaskDescriptionInput = document.createElement("INPUT");
+    const modalTaskDescriptionInput = document.createElement("TEXTAREA");
     modalTaskDescriptionInput.setAttribute("type", "text");
     modalTaskDescriptionInput.classList.add("modal-description-input-task");
     form.appendChild(modalTaskDescriptionInput);
     const submitButton = document.createElement("BUTTON");
     submitButton.classList.add("submitButtonTask");
     submitButton.setAttribute(`id`, `submitButtonTask`);
+    submitButton.setAttribute(`type`, `submit`);
+    submitButton.textContent = "Submit";
+    form.appendChild(submitButton);
+  }
+  if (typeOfModal == `edit`) {
+    const modalTitle = document.createElement("p");
+    modalTitle.classList.add("modal-title-project");
+    modalTitle.textContent = `Edit Task`;
+    modalSection.appendChild(modalTitle);
+    const underLine = document.createElement("div");
+    underLine.classList.add("underLine-project");
+    modalSection.appendChild(underLine);
+    const form = document.createElement("FORM");
+    form.setAttribute("id", "editForm");
+    modalSection.appendChild(form);
+    const modalProject = document.createElement("p");
+    modalProject.classList.add("modal-project-edit");
+    modalProject.textContent = `Project Name: `;
+    form.appendChild(modalProject);
+    const modalProjectInput = document.createElement("p");
+    modalProjectInput.classList.add("modal-project-input-edit");
+    modalProjectInput.textContent = `${currentArray[index].project}`;
+    form.appendChild(modalProjectInput);
+    const modalTaskTitle = document.createElement("p");
+    modalTaskTitle.classList.add("modal-task-title-edit");
+    modalTaskTitle.textContent = `Task Title:`;
+    form.appendChild(modalTaskTitle);
+    const modalTaskTitleInput = document.createElement("INPUT");
+    modalTaskTitleInput.setAttribute("type", "text");
+    modalTaskTitleInput.setAttribute("value", `${currentArray[index].title}`);
+    modalTaskTitleInput.classList.add("modal-title-input-edit");
+    form.appendChild(modalTaskTitleInput);
+    const modalTaskDueDate = document.createElement("p");
+    modalTaskDueDate.classList.add("modal-due-date-edit");
+    modalTaskDueDate.textContent = `Task Due Date: `;
+    form.appendChild(modalTaskDueDate);
+    const modalTaskDueDateInput = document.createElement("INPUT");
+    modalTaskDueDateInput.setAttribute("type", "date");
+    modalTaskDueDateInput.setAttribute(
+      "value",
+      `${currentArray[index].dueDate}`
+    );
+    modalTaskDueDateInput.classList.add("modal-due-date-input-edit");
+    form.appendChild(modalTaskDueDateInput);
+    const modalTaskPriority = document.createElement("p");
+    modalTaskPriority.classList.add("modal-priority-edit");
+    modalTaskPriority.textContent = `Task Priority: `;
+    form.appendChild(modalTaskPriority);
+    const modalPriorityOptions = document.createElement("div");
+    modalPriorityOptions.classList.add("modal-priority-options-edit");
+    form.appendChild(modalPriorityOptions);
+    const lowPriorityDiv = document.createElement("div");
+    lowPriorityDiv.classList.add("low-priority-div");
+    modalPriorityOptions.appendChild(lowPriorityDiv);
+    const lowPriorityInput = document.createElement("INPUT");
+    lowPriorityInput.classList.add("low-priority-input");
+    lowPriorityInput.setAttribute("type", "radio");
+    lowPriorityInput.setAttribute("name", "priority-type");
+    lowPriorityInput.setAttribute("id", "lowPriority");
+    lowPriorityInput.setAttribute("value", "lowPriority");
+    if (currentArray[index].priority == "Low") {
+      lowPriorityInput.setAttribute("checked", "checked");
+    }
+    lowPriorityDiv.appendChild(lowPriorityInput);
+    const lowPriorityLabel = document.createElement("LABEL");
+    lowPriorityLabel.setAttribute("for", "lowPriority");
+    lowPriorityDiv.appendChild(lowPriorityLabel);
+    const lowPriorityNode = document.createTextNode("Low");
+    lowPriorityLabel.setAttribute("for", "lowPriority");
+    lowPriorityLabel.appendChild(lowPriorityNode);
+    const mediumPriorityDiv = document.createElement("div");
+    mediumPriorityDiv.classList.add("medium-priority-div");
+    modalPriorityOptions.appendChild(mediumPriorityDiv);
+    const mediumPriorityInput = document.createElement("INPUT");
+    mediumPriorityInput.classList.add("medium-priority-input");
+    mediumPriorityInput.setAttribute("type", "radio");
+    mediumPriorityInput.setAttribute("name", "priority-type");
+    mediumPriorityInput.setAttribute("id", "mediumPriority");
+    mediumPriorityInput.setAttribute("value", "mediumPriority");
+    if (currentArray[index].priority == "Medium") {
+      mediumPriorityInput.setAttribute("checked", "checked");
+    }
+    mediumPriorityDiv.appendChild(mediumPriorityInput);
+    const mediumPriorityLabel = document.createElement("LABEL");
+    mediumPriorityLabel.setAttribute("for", "mediumPriority");
+    mediumPriorityDiv.appendChild(mediumPriorityLabel);
+    const mediumPriorityNode = document.createTextNode("Medium");
+    mediumPriorityLabel.setAttribute("for", "mediumPriority");
+    mediumPriorityLabel.appendChild(mediumPriorityNode);
+    const highPriorityDiv = document.createElement("div");
+    highPriorityDiv.classList.add("high-priority-div");
+    modalPriorityOptions.appendChild(highPriorityDiv);
+    const highPriorityInput = document.createElement("INPUT");
+    highPriorityInput.classList.add("high-priority-input");
+    highPriorityInput.setAttribute("type", "radio");
+    highPriorityInput.setAttribute("name", "priority-type");
+    highPriorityInput.setAttribute("id", "highPriority");
+    highPriorityInput.setAttribute("value", "highPriority");
+    if (currentArray[index].priority == "High") {
+      highPriorityInput.setAttribute("checked", "checked");
+    }
+    highPriorityDiv.appendChild(highPriorityInput);
+    const highPriorityLabel = document.createElement("LABEL");
+    highPriorityLabel.setAttribute("for", "highPriority");
+    highPriorityDiv.appendChild(highPriorityLabel);
+    const highPriorityNode = document.createTextNode("High");
+    highPriorityLabel.setAttribute("for", "highPriority");
+    highPriorityLabel.appendChild(highPriorityNode);
+    const modalTaskDescription = document.createElement("p");
+    modalTaskDescription.classList.add("modal-description-edit");
+    modalTaskDescription.textContent = `Task Description:`;
+    form.appendChild(modalTaskDescription);
+    const modalTaskDescriptionInput = document.createElement("TEXTAREA");
+    modalTaskDescriptionInput.setAttribute("type", "text");
+    modalTaskDescriptionInput.setAttribute(
+      "value",
+      `${currentArray[index].description}`
+    );
+    modalTaskDescriptionInput.classList.add("modal-description-input-edit");
+    form.appendChild(modalTaskDescriptionInput);
+    const submitButton = document.createElement("BUTTON");
+    submitButton.classList.add("submitButtonEdit");
+    submitButton.setAttribute(`id`, `submitButtonEdit`);
     submitButton.setAttribute(`type`, `submit`);
     submitButton.textContent = "Submit";
     form.appendChild(submitButton);

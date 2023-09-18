@@ -506,6 +506,7 @@ h1 {
   grid-row-end: 7;
   height: 75px;
   align-self: center;
+  resize: none;
 }
 
 .submitButton {
@@ -620,9 +621,125 @@ h1 {
   grid-row-end: 7;
   height: 75px;
   align-self: center;
+  resize: none;
 }
 
 .submitButtonTask {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 7;
+  grid-row-end: 8;
+  align-self: self-end;
+  justify-self: self-end;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: var(--accent-color);
+}
+
+#editForm {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 8;
+  display: grid;
+  grid-template-columns: 200px 300px;
+  grid-template-rows: 50px 50px 50px 50px 50px 100px 50px;
+  align-content: center;
+}
+
+.modal-project-edit {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.modal-project-input-edit {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.project-information-edit {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  justify-self: center;
+  color: var(--accent-color);
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.modal-task-title-edit {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.modal-title-input-edit {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  height: 25px;
+  align-self: center;
+}
+
+.modal-due-date-edit {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+.modal-due-date-input-edit {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  height: 25px;
+  align-self: center;
+}
+
+.modal-priority-edit {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+.modal-priority-options-edit {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 5;
+  grid-row-end: 6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-description-edit {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+.modal-description-input-edit {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 6;
+  grid-row-end: 7;
+  height: 75px;
+  align-self: center;
+  resize: none;
+}
+
+.submitButtonEdit {
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 7;

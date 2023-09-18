@@ -14,16 +14,16 @@ addTaskToArray(
   "Shopping",
   "Need Milk and Eggs",
   "Low",
-  "12/12/12",
+  "2018-07-22",
   false
 );
-addTaskToArray("Exercise", "Gym", "Go Lift!", "High", "11/11/11", false);
+addTaskToArray("Exercise", "Gym", "Go Lift!", "High", "2018-07-22", false);
 addTaskToArray(
   "Chores",
   "Clean House",
   "Do Laundry and Dishes",
   "Medium",
-  "10/10/10",
+  "2018-07-22",
   true
 );
 addTaskToArray(
@@ -31,7 +31,7 @@ addTaskToArray(
   "Car Wash",
   "Go to that Brown Bear",
   "Low",
-  "09/09/09",
+  "2018-07-22",
   false
 );
 
