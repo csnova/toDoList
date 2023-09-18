@@ -9,21 +9,37 @@ const allTasks = [];
 let allProjects = [];
 
 class task {
-  constructor(project, title, description, priority, dueDate) {
+  constructor(project, title, description, priority, dueDate, checked) {
     this.project = project;
     this.title = title;
     this.description = description;
     this.priority = priority;
     this.dueDate = dueDate;
+    this.checked = checked;
+    this.spot = allTasks.length;
   }
   taskInfo() {
-    let info = `Project: ${project} Title: ${title} Description: ${description} Priority: ${priority} Due Date: ${dueDate}`;
+    let info = `Project: ${project} Title: ${title} Description: ${description} Priority: ${priority} Due Date: ${dueDate} Finished: ${checked}`;
     return info;
   }
 }
 
-function addTaskToArray(project, title, description, priority, dueDate) {
-  const newTask = new task(project, title, description, priority, dueDate);
+function addTaskToArray(
+  project,
+  title,
+  description,
+  priority,
+  dueDate,
+  checked
+) {
+  const newTask = new task(
+    project,
+    title,
+    description,
+    priority,
+    dueDate,
+    checked
+  );
   allTasks.push(newTask);
 }
 
@@ -34,7 +50,25 @@ function removeElementsByClass(className) {
   }
 }
 
+function strikeThrough(text) {
+  return text
+    .split("")
+    .map((char) => char + "\u0336")
+    .join("");
+}
+
+// function changeCheck(id) {
+//   var x = document.getElementById(id);
+//   console.log("changed");
+//   if (task.checked) {
+//     task.checked = false;
+//   } else {
+//     task.checked = true;
+//   }
+// }
+
 function printAll(idName) {
+  let currentMenu = idName;
   const website = document.querySelector(`#content`);
   const container = document.createElement("div");
   container.classList.add("container");
@@ -151,10 +185,28 @@ function printAll(idName) {
     taskCheck.classList.add("checkbox");
     taskCheck.setAttribute("type", "checkbox");
     taskCheck.setAttribute(`id`, `completedTask${i}`);
+    taskCheck.addEventListener("change", (event) => {
+      if (event.currentTarget.checked) {
+        task.checked = true;
+      } else {
+        task.checked = false;
+      }
+      removeElementsByClass("container");
+      printAll(currentMenu);
+    });
+    // taskCheck.setAttribute(`onchange`, changeCheck(`completedTask${i}`));
+    // taskCheck.addEventListener("onchange", changeCheck(`completedTask${i}`));
     newDiv.appendChild(taskCheck);
     const taskTitle = document.createElement("h2");
     taskTitle.classList.add(`task${i}Title`);
-    taskTitle.textContent = `${task.title}`;
+    if (task.checked) {
+      const text = strikeThrough(`${task.title}`);
+      taskTitle.textContent = text;
+      taskCheck.checked = true;
+    } else {
+      taskTitle.textContent = `${task.title}`;
+      taskCheck.checked = false;
+    }
     newDiv.appendChild(taskTitle);
     const taskButton = document.createElement("BUTTON");
     taskButton.classList.add("taskButton");
@@ -174,9 +226,10 @@ function printAll(idName) {
     const deleteButtonBox = document.createElement("BUTTON");
     deleteButtonBox.classList.add("taskButton");
     deleteButtonBox.addEventListener("click", () => {
-      allTasks.splice(index, 1);
+      const currentSpot = currentArray[index].spot;
+      allTasks.splice(currentSpot, 1);
       removeElementsByClass("container");
-      printAll();
+      printAll(currentMenu);
     });
     newDiv.appendChild(deleteButtonBox);
     const deleteButtonImg = document.createElement("img");
