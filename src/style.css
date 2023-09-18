@@ -210,7 +210,6 @@ h1 {
   opacity: 0.6;
 }
 
-/* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -225,7 +224,6 @@ h1 {
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
-/* Modal Content */
 .modal-content {
   background-color: var(--lightest-color-background);
   margin: auto;
@@ -235,7 +233,6 @@ h1 {
   width: 600px;
 }
 
-/* The Close Button */
 .close {
   color: var(--border-color);
   float: right;
@@ -253,8 +250,8 @@ h1 {
 .modal-section {
   display: grid;
   margin: 50px;
-  grid-template-columns: 125px 375px;
-  grid-template-rows: 80px 20px 50px 50px 50px 150px;
+  grid-template-columns: 200px 300px;
+  grid-template-rows: 80px 20px 75px 75px 75px 175px;
 }
 
 .modal-title-info {
@@ -337,7 +334,8 @@ h1 {
 
 .modal-title-info,
 .modal-title-text-info {
-  font-size: 30px;
+  font-size: 50px;
+  align-self: center;
 }
 
 .modal-title-info,
@@ -366,5 +364,159 @@ h1 {
 .modal-due-date-info,
 .modal-priority-info,
 .modal-project-info {
-  font-size: 20pxi;
+  font-size: 30px;
+}
+
+.modal-title-project {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.underLine-project {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  background-color: var(--accent-color);
+}
+
+#newProjectForm {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 8;
+  display: grid;
+  grid-template-columns: 200px 300px;
+  grid-template-rows: 50px 50px 50px 50px 50px 100px 50px;
+  align-content: center;
+}
+
+.modal-project-project {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.modal-project-input-project {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  height: 25px;
+  align-self: center;
+}
+
+.project-information-project {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  justify-self: center;
+  color: var(--accent-color);
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.modal-task-title-project {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.modal-title-input-project {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  height: 25px;
+  align-self: center;
+}
+
+.modal-due-date-project {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+.modal-due-date-input-project {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  height: 25px;
+  align-self: center;
+}
+
+.modal-priority-project {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+.modal-priority-options {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 5;
+  grid-row-end: 6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.low-priority-div {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(255, 217, 0, 0.5);
+  border: 1px solid gold;
+}
+
+.medium-priority-div {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(255, 140, 0, 0.5);
+  border: 1px solid darkorange;
+}
+
+.high-priority-div {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(255, 0, 0, 0.5);
+  border: 1px solid red;
+}
+
+.modal-task-description-project {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+.modal-description-input-project {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 6;
+  grid-row-end: 7;
+  height: 75px;
+  align-self: center;
+}
+
+.submitButton {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 7;
+  grid-row-end: 8;
+  align-self: self-end;
+  justify-self: self-end;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: var(--accent-color);
 }
