@@ -35,4 +35,4 @@ addTaskToArray(
   false
 );
 
-printAll("allButton");
+printAll("None");

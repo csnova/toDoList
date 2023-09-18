@@ -93,7 +93,7 @@ function printAll(idName) {
   allList.classList.add("allList");
   list.appendChild(allList);
   const allButton = document.createElement("BUTTON");
-  allButton.setAttribute(`id`, `allButton`);
+  allButton.setAttribute(`id`, `None`);
   allButton.classList.add("listButton");
   allButton.textContent = "All";
   allList.appendChild(allButton);
@@ -101,7 +101,7 @@ function printAll(idName) {
   projectList.classList.add("projectList");
   list.appendChild(projectList);
   const projectButton = document.createElement("BUTTON");
-  projectButton.setAttribute(`id`, `projectButton`);
+  projectButton.setAttribute(`id`, `None`);
   projectButton.classList.add("listButton");
   projectButton.textContent = "Project";
   projectList.appendChild(projectButton);
@@ -132,7 +132,7 @@ function printAll(idName) {
   newProject.setAttribute(`id`, `newProject`);
   newProject.textContent = "New Project";
   newProject.addEventListener("click", () => {
-    displayModal(`newProject`, `project`, currentArray, 0);
+    displayModal(`newProject`, `project`, currentArray, idName);
   });
   sideBarBox.appendChild(newProject);
   const addButton1 = document.createElement("img");
@@ -149,9 +149,7 @@ function printAll(idName) {
   taskBox.classList.add("taskBox");
   infoBox.appendChild(taskBox);
   let currentArray = [];
-  if (idName == "allButton") {
-    currentArray = allTasks;
-  } else if (idName == "projectButton") {
+  if (idName == "None") {
     currentArray = allTasks;
   } else {
     const idFilter = allTasks.filter((task) => task.project == idName);
@@ -219,6 +217,7 @@ function printAll(idName) {
     const deleteButtonBox = document.createElement("BUTTON");
     deleteButtonBox.classList.add("taskButton");
     deleteButtonBox.addEventListener("click", () => {
+      console.log(currentArray);
       const currentSpot = currentArray[index].spot;
       allTasks.splice(currentSpot, 1);
       removeElementsByClass("container");
@@ -236,7 +235,8 @@ function printAll(idName) {
   newTask.setAttribute(`id`, `newTask`);
   newTask.textContent = "New Task";
   newTask.addEventListener("click", () => {
-    displayModal(`newTask`, `task`, currentArray, 0);
+    const currentIdName = idName;
+    displayModal(`newTask`, `task`, currentArray, currentIdName);
   });
   infoBox.appendChild(newTask);
   const addButton2 = document.createElement("img");
@@ -428,7 +428,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     form.appendChild(modalTaskDescriptionInput);
     const submitButton = document.createElement("BUTTON");
     submitButton.classList.add("submitButton");
-    submitButton.setAttribute(`id`, `submitButton`);
+    submitButton.setAttribute(`id`, `ProjectSubmitButton`);
     submitButton.setAttribute(`type`, `submit`);
     submitButton.textContent = "Submit";
     form.appendChild(submitButton);
@@ -436,48 +436,44 @@ function displayModal(idName, typeOfModal, currentArray, index) {
   if (typeOfModal == `task`) {
     const modalTitle = document.createElement("p");
     modalTitle.classList.add("modal-title-project");
-    modalTitle.textContent = `Create a New Project`;
+    modalTitle.textContent = `Create a New Task`;
     modalSection.appendChild(modalTitle);
     const underLine = document.createElement("div");
     underLine.classList.add("underLine-project");
     modalSection.appendChild(underLine);
     const form = document.createElement("FORM");
-    form.setAttribute("id", "newProjectForm");
+    form.setAttribute("id", "newTaskForm");
     modalSection.appendChild(form);
     const modalProject = document.createElement("p");
-    modalProject.classList.add("modal-project-project");
-    modalProject.textContent = `New Project Name:`;
+    modalProject.classList.add("modal-project-task");
+    modalProject.textContent = `Project Name: `;
     form.appendChild(modalProject);
-    const modalProjectInput = document.createElement("INPUT");
-    modalProjectInput.setAttribute("type", "text");
-    modalProjectInput.classList.add("modal-project-input-project");
+    const modalProjectInput = document.createElement("p");
+    modalProjectInput.classList.add("modal-project-input-task");
+    modalProjectInput.textContent = `${index}`;
     form.appendChild(modalProjectInput);
-    const ProjectInformation = document.createElement("p");
-    ProjectInformation.classList.add("project-information-project");
-    ProjectInformation.textContent = `Projects have to have atleast 1 task to be displayed`;
-    form.appendChild(ProjectInformation);
     const modalTaskTitle = document.createElement("p");
-    modalTaskTitle.classList.add("modal-task-title-project");
+    modalTaskTitle.classList.add("modal-task-title-task");
     modalTaskTitle.textContent = `Task Title:`;
     form.appendChild(modalTaskTitle);
     const modalTaskTitleInput = document.createElement("INPUT");
     modalTaskTitleInput.setAttribute("type", "text");
-    modalTaskTitleInput.classList.add("modal-title-input-project");
+    modalTaskTitleInput.classList.add("modal-title-input-task");
     form.appendChild(modalTaskTitleInput);
     const modalTaskDueDate = document.createElement("p");
-    modalTaskDueDate.classList.add("modal-due-date-project");
+    modalTaskDueDate.classList.add("modal-due-date-task");
     modalTaskDueDate.textContent = `Task Due Date: `;
     form.appendChild(modalTaskDueDate);
     const modalTaskDueDateInput = document.createElement("INPUT");
     modalTaskDueDateInput.setAttribute("type", "date");
-    modalTaskDueDateInput.classList.add("modal-due-date-input-project");
+    modalTaskDueDateInput.classList.add("modal-due-date-input-task");
     form.appendChild(modalTaskDueDateInput);
     const modalTaskPriority = document.createElement("p");
-    modalTaskPriority.classList.add("modal-priority-project");
+    modalTaskPriority.classList.add("modal-priority-task");
     modalTaskPriority.textContent = `Task Priority: `;
     form.appendChild(modalTaskPriority);
     const modalPriorityOptions = document.createElement("div");
-    modalPriorityOptions.classList.add("modal-priority-options");
+    modalPriorityOptions.classList.add("modal-priority-options-task");
     form.appendChild(modalPriorityOptions);
     const lowPriorityDiv = document.createElement("div");
     lowPriorityDiv.classList.add("low-priority-div");
@@ -528,16 +524,16 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     highPriorityLabel.setAttribute("for", "highPriority");
     highPriorityLabel.appendChild(highPriorityNode);
     const modalTaskDescription = document.createElement("p");
-    modalTaskDescription.classList.add("modal-task-description-project");
+    modalTaskDescription.classList.add("modal-description-task");
     modalTaskDescription.textContent = `Task Description:`;
     form.appendChild(modalTaskDescription);
     const modalTaskDescriptionInput = document.createElement("INPUT");
     modalTaskDescriptionInput.setAttribute("type", "text");
-    modalTaskDescriptionInput.classList.add("modal-description-input-project");
+    modalTaskDescriptionInput.classList.add("modal-description-input-task");
     form.appendChild(modalTaskDescriptionInput);
     const submitButton = document.createElement("BUTTON");
-    submitButton.classList.add("submitButton");
-    submitButton.setAttribute(`id`, `submitButton`);
+    submitButton.classList.add("submitButtonTask");
+    submitButton.setAttribute(`id`, `submitButtonTask`);
     submitButton.setAttribute(`type`, `submit`);
     submitButton.textContent = "Submit";
     form.appendChild(submitButton);
