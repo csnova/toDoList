@@ -57,16 +57,6 @@ function strikeThrough(text) {
     .join("");
 }
 
-// function changeCheck(id) {
-//   var x = document.getElementById(id);
-//   console.log("changed");
-//   if (task.checked) {
-//     task.checked = false;
-//   } else {
-//     task.checked = true;
-//   }
-// }
-
 function printAll(idName) {
   let currentMenu = idName;
   const website = document.querySelector(`#content`);
@@ -283,46 +273,75 @@ function displayModal(idName, typeOfModal, currentArray, index) {
   const modalSection = document.createElement("div");
   modalSection.classList.add("modal-section");
   modalContainer.appendChild(modalSection);
-  const modalTitle = document.createElement("p");
-  modalTitle.classList.add("modal-title");
-  modalTitle.textContent = `Title:`;
-  modalSection.appendChild(modalTitle);
-  const modalTitleText = document.createElement("p");
-  modalTitleText.classList.add("modal-title-text");
-  modalTitleText.textContent = `${currentArray[index].title}`;
-  modalSection.appendChild(modalTitleText);
-  const modalProject = document.createElement("p");
-  modalProject.classList.add("modal-project");
-  modalProject.textContent = `Project:`;
-  modalSection.appendChild(modalProject);
-  const modalProjectText = document.createElement("p");
-  modalProjectText.classList.add("modal-project-text");
-  modalProjectText.textContent = `${currentArray[index].project}`;
-  modalSection.appendChild(modalProjectText);
-  const modalPriority = document.createElement("p");
-  modalPriority.classList.add("modal-priority");
-  modalPriority.textContent = `Priority:`;
-  modalSection.appendChild(modalPriority);
-  const modalPriorityText = document.createElement("p");
-  modalPriorityText.classList.add("modal-priority-text");
-  modalPriorityText.textContent = `${currentArray[index].priority}`;
-  modalSection.appendChild(modalPriorityText);
-  const modalDueDate = document.createElement("p");
-  modalDueDate.classList.add("modal-due-date");
-  modalDueDate.textContent = `Due Date:`;
-  modalSection.appendChild(modalDueDate);
-  const modalDueDateText = document.createElement("p");
-  modalDueDateText.classList.add("modal-due-date-text");
-  modalDueDateText.textContent = `${currentArray[index].dueDate}`;
-  modalSection.appendChild(modalDueDateText);
-  const modalDescription = document.createElement("p");
-  modalDescription.classList.add("modal-description");
-  modalDescription.textContent = `Description:`;
-  modalSection.appendChild(modalDescription);
-  const modalDescriptionText = document.createElement("p");
-  modalDescriptionText.classList.add("modal-description-text");
-  modalDescriptionText.textContent = `${currentArray[index].description}`;
-  modalSection.appendChild(modalDescriptionText);
+  if (typeOfModal == `info`) {
+    const modalTitle = document.createElement("p");
+    modalTitle.classList.add("modal-title-info");
+    modalTitle.textContent = `Title:`;
+    modalSection.appendChild(modalTitle);
+    const modalTitleText = document.createElement("p");
+    modalTitleText.classList.add("modal-title-text-info");
+    modalTitleText.textContent = `${currentArray[index].title}`;
+    modalSection.appendChild(modalTitleText);
+    const underLine = document.createElement("div");
+    underLine.classList.add("underLine-info");
+    modalSection.appendChild(underLine);
+    const modalProject = document.createElement("p");
+    modalProject.classList.add("modal-project-info");
+    modalProject.textContent = `Project:`;
+    modalSection.appendChild(modalProject);
+    const modalProjectText = document.createElement("p");
+    modalProjectText.classList.add("modal-project-text-info");
+    modalProjectText.textContent = `${currentArray[index].project}`;
+    modalSection.appendChild(modalProjectText);
+    const modalPriority = document.createElement("p");
+    modalPriority.classList.add("modal-priority-info");
+    modalPriority.textContent = `Priority:`;
+    modalSection.appendChild(modalPriority);
+    const modalPriorityText = document.createElement("p");
+    modalPriorityText.classList.add("modal-priority-text-info");
+    modalPriorityText.textContent = `${currentArray[index].priority}`;
+    modalSection.appendChild(modalPriorityText);
+    const modalDueDate = document.createElement("p");
+    modalDueDate.classList.add("modal-due-date-info");
+    modalDueDate.textContent = `Due Date:`;
+    modalSection.appendChild(modalDueDate);
+    const modalDueDateText = document.createElement("p");
+    modalDueDateText.classList.add("modal-due-date-text-info");
+    modalDueDateText.textContent = `${currentArray[index].dueDate}`;
+    modalSection.appendChild(modalDueDateText);
+    const modalDescription = document.createElement("p");
+    modalDescription.classList.add("modal-description-info");
+    modalDescription.textContent = `Description:`;
+    modalSection.appendChild(modalDescription);
+    const modalDescriptionText = document.createElement("p");
+    modalDescriptionText.classList.add("modal-description-text-info");
+    modalDescriptionText.textContent = `${currentArray[index].description}`;
+    modalSection.appendChild(modalDescriptionText);
+  }
+  if (typeOfModal == `project`) {
+    const modalTitle = document.createElement("p");
+    modalTitle.classList.add("modal-title-project");
+    modalTitle.textContent = `Create a New Project`;
+    modalSection.appendChild(modalTitle);
+    const underLine = document.createElement("div");
+    underLine.classList.add("underLine-project");
+    modalSection.appendChild(underLine);
+    const form = document.createElement("FORM");
+    form.setAttribute("id", "newProjectForm");
+    modalSection.appendChild(form);
+    const modalProject = document.createElement("p");
+    modalProject.classList.add("modal-project-project");
+    modalProject.textContent = `New Project Name:`;
+    form.appendChild(modalProject);
+    const modalProjectInput = document.createElement("INPUT");
+    modalProjectInput.setAttribute("type", "text");
+    modalProjectInput.classList.add("modal-project-input-project");
+    form.appendChild(modalProjectInput);
+    const ProjectInformation = document.createElement("p");
+    ProjectInformation.classList.add("project-information-project");
+    ProjectInformation.textContent = `Projects have to have atleast 1 task to be displayed`;
+    form.appendChild(ProjectInformation);
+  }
 
   // Get the button that opens the modal
   const btn = document.getElementById(`${idName}`);

@@ -1,7 +1,3 @@
-* {
-  font-family: eczar;
-}
-
 :root {
   /* example variable declaration */
   --main-color-background: red;
@@ -17,10 +13,13 @@
 @font-face {
   font-family: eczar;
   src: url("../src/fonts/Eczar-Regular.ttf");
+  font-family: eczarBold;
+  src: url("../src/fonts/Eczar-Bold.ttf");
 }
 
 html {
   background-color: var(--light-color-background);
+  font-family: eczar;
 }
 
 .container {
@@ -98,6 +97,15 @@ li {
   height: 50px;
 }
 
+h2 {
+  font-size: 20px;
+}
+
+h1 {
+  font-size: 42px;
+  font-weight: 700;
+}
+
 .listButton {
   font-size: 30px;
   background-color: transparent;
@@ -152,10 +160,6 @@ li {
 .checkbox {
   height: 20px;
   width: 20px;
-}
-
-h2 {
-  font-size: 20px;
 }
 
 #newProject {
@@ -249,76 +253,118 @@ h2 {
 .modal-section {
   display: grid;
   margin: 50px;
-  grid-template-columns: 150px 450px;
+  grid-template-columns: 125px 375px;
   grid-template-rows: 80px 20px 50px 50px 50px 150px;
 }
 
-.modal-title {
+.modal-title-info {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
 }
 
-.modal-title-text {
+.modal-title-text-info {
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
 }
 
-.modal-project {
+.underLine-info {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  background-color: var(--accent-color);
+}
+
+.modal-project-info {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 3;
   grid-row-end: 4;
 }
 
-.modal-project-text {
+.modal-project-text-info {
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 3;
   grid-row-end: 4;
 }
 
-.modal-priority {
+.modal-priority-info {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 4;
   grid-row-end: 5;
 }
 
-.modal-priority-text {
+.modal-priority-text-info {
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 4;
   grid-row-end: 5;
 }
 
-.modal-due-date {
+.modal-due-date-info {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 5;
   grid-row-end: 6;
 }
 
-.modal-due-date-text {
+.modal-due-date-text-info {
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 5;
   grid-row-end: 6;
 }
 
-.modal-description {
+.modal-description-info {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 6;
   grid-row-end: 7;
 }
 
-.modal-description-text {
+.modal-description-text-info {
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 6;
   grid-row-end: 7;
+}
+
+.modal-title-info,
+.modal-title-text-info {
+  font-size: 30px;
+}
+
+.modal-title-info,
+.modal-content-info,
+.modal-description-info,
+.modal-due-date-info,
+.modal-priority-info,
+.modal-project-info {
+  font-weight: 800;
+}
+
+.modal-title-text-info,
+.modal-description-text-info,
+.modal-due-date-text-info,
+.modal-priority-text-info,
+.modal-project-text-info {
+  font-weight: 500;
+}
+
+.modal-description-text-info,
+.modal-due-date-text-info,
+.modal-priority-text-info,
+.modal-project-text-info,
+.modal-content-info,
+.modal-description-info,
+.modal-due-date-info,
+.modal-priority-info,
+.modal-project-info {
+  font-size: 20pxi;
 }
