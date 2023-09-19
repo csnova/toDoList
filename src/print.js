@@ -214,7 +214,10 @@ function printAll(idName) {
     const editButtonBox = document.createElement("BUTTON");
     editButtonBox.classList.add("taskButton");
     editButtonBox.addEventListener("click", () => {
-      displayModal(`edit${index}Button`, `edit`, currentArray, index);
+      const currentSpot = allTasks.findIndex(
+        (task) => task.spot === currentArray[index].spot
+      );
+      displayModal(`edit${index}Button`, `edit`, currentArray, currentSpot);
     });
     newDiv.appendChild(editButtonBox);
     const editButtonImg = document.createElement("img");
@@ -241,19 +244,21 @@ function printAll(idName) {
     deleteButtonBox.appendChild(deleteButtonImg);
     i++;
   }
-  const newTask = document.createElement("BUTTON");
-  newTask.classList.add("addButton");
-  newTask.setAttribute(`id`, `newTask`);
-  newTask.textContent = "New Task";
-  newTask.addEventListener("click", () => {
-    const currentIdName = idName;
-    displayModal(`newTask`, `task`, currentArray, currentIdName);
-  });
-  infoBox.appendChild(newTask);
-  const addButton2 = document.createElement("img");
-  addButton2.src = Add;
-  addButton2.classList.add("addButton2");
-  newTask.appendChild(addButton2);
+  if (idName !== "None") {
+    const newTask = document.createElement("BUTTON");
+    newTask.classList.add("addButton");
+    newTask.setAttribute(`id`, `newTask`);
+    newTask.textContent = "New Task";
+    newTask.addEventListener("click", () => {
+      const currentIdName = idName;
+      displayModal(`newTask`, `task`, currentArray, currentIdName);
+    });
+    infoBox.appendChild(newTask);
+    const addButton2 = document.createElement("img");
+    addButton2.src = Add;
+    addButton2.classList.add("addButton2");
+    newTask.appendChild(addButton2);
+  }
 }
 
 function makeProjectList() {
@@ -284,9 +289,6 @@ function newProject() {
     ".modal-description-input-project"
   );
   const dueDateField = document.querySelector(".modal-due-date-input-project");
-  const radioButtons = document.querySelectorAll(
-    'input[name="priority-type-project"]'
-  );
   // Adds an event listener to submit button
   const formField = document.querySelector("#newProjectForm");
   formField.addEventListener("submit", (e) => {
@@ -322,49 +324,46 @@ function newProject() {
   });
 }
 
-// function newTask() {
-//   // These use the field Ids to select the correct Input
-//   const projectField = document.querySelector(".modal-project-input-task");
-//   const titleField = document.querySelector(".modal-title-input-task");
-//   const detailField = document.querySelector(".modal-description-input-task");
-//   const dueDateField = document.querySelector(".modal-due-date-input-task");
-//   const radioButtons = document.querySelectorAll(
-//     'input[name="priority-type-task"]'
-//   );
-//   // Adds an event listener to submit button
-//   const formField = document.querySelector("#newTaskForm");
-//   formField.addEventListener("submit", (e) => {
-//     // This goes through each radio button to save the name of the one that is selected
-//     let selectedPriority;
-//     if (document.getElementById("lowPriorityTask").checked) {
-//       selectedPriority = "Low";
-//     }
-//     if (document.getElementById("mediumPriorityTask").checked) {
-//       selectedPriority = "Medium";
-//     }
-//     if (document.getElementById("highPriorityTask").checked) {
-//       selectedPriority = "High";
-//     }
-//     e.preventDefault();
-//     console.log(
-//       `${projectField.value}, ${titleField.value}, ${detailField.value}, ${selectedPriority}, ${dueDateField.value}`
-//     );
-//     addTaskToArray(
-//       projectField.value,
-//       titleField.value,
-//       detailField.value,
-//       selectedPriority,
-//       dueDateField.value,
-//       false
-//     );
-//     // Clears page and reloads with new task in array
-//     removeElementsByClass("modal-content");
-//     removeElementsByClass("container");
-//     const modal = document.getElementById("myModal");
-//     modal.style.display = "none";
-//     printAll(`${projectField.value}`);
-//   });
-// }
+function newTask(project) {
+  // These use the field Ids to select the correct Input
+  const projectField = project;
+  const titleField = document.querySelector(".modal-title-input-task");
+  const detailField = document.querySelector(".modal-description-input-task");
+  const dueDateField = document.querySelector(".modal-due-date-input-task");
+  // Adds an event listener to submit button
+  const formField = document.querySelector("#newTaskForm");
+  formField.addEventListener("submit", (e) => {
+    // This goes through each radio button to save the name of the one that is selected
+    let selectedPriority;
+    if (document.getElementById("lowPriorityTask").checked) {
+      selectedPriority = "Low";
+    }
+    if (document.getElementById("mediumPriorityTask").checked) {
+      selectedPriority = "Medium";
+    }
+    if (document.getElementById("highPriorityTask").checked) {
+      selectedPriority = "High";
+    }
+    e.preventDefault();
+    console.log(
+      `${projectField.value}, ${titleField.value}, ${detailField.value}, ${selectedPriority}, ${dueDateField.value}`
+    );
+    addTaskToArray(
+      projectField,
+      titleField.value,
+      detailField.value,
+      selectedPriority,
+      dueDateField.value,
+      false
+    );
+    // Clears page and reloads with new task in array
+    removeElementsByClass("modal-content");
+    removeElementsByClass("container");
+    const modal = document.getElementById("myModal");
+    modal.style.display = "none";
+    printAll(`${projectField}`);
+  });
+}
 
 function displayModal(idName, typeOfModal, currentArray, index) {
   //Creates the Modal
@@ -639,9 +638,11 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     submitButton.setAttribute(`type`, `submit`);
     submitButton.textContent = "Submit";
     form.appendChild(submitButton);
-    // newTask();
+    newTask(`${index}`);
   }
   if (typeOfModal == `edit`) {
+    console.log(index);
+    console.log(allTasks[index]);
     const modalTitle = document.createElement("p");
     modalTitle.classList.add("modal-title-project");
     modalTitle.textContent = `Edit Task`;
