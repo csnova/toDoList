@@ -1,3 +1,4 @@
+import { getYear, getMonth, getDate, format } from "date-fns";
 import Spiral from "./images/spiral.jpg";
 import Edit from "./images/edit.png";
 // <a href="https://www.flaticon.com/free-icons/delete" title="delete icons">Delete icons created by Ilham Fitrotul Hayat - Flaticon</a>
@@ -443,7 +444,12 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     modalSection.appendChild(modalDueDate);
     const modalDueDateText = document.createElement("p");
     modalDueDateText.classList.add("modal-due-date-text-info");
-    modalDueDateText.textContent = `${currentArray[index].dueDate}`;
+    const dueDate = currentArray[index].dueDate;
+    let day = getDate(new Date(dueDate));
+    day = day + 1;
+    const year = getYear(new Date(dueDate));
+    const month = format(new Date(dueDate), "MMM");
+    modalDueDateText.textContent = `${month} ${day} ${year}`;
     modalSection.appendChild(modalDueDateText);
     const modalDescription = document.createElement("p");
     modalDescription.classList.add("modal-description-info");
