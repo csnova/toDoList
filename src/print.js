@@ -434,6 +434,8 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     form.appendChild(modalProject);
     const modalProjectInput = document.createElement("INPUT");
     modalProjectInput.setAttribute("type", "text");
+    modalProjectInput.setAttribute("maxlength", "10");
+    modalProjectInput.setAttribute("onkeypress", "return event.charCode != 32");
     modalProjectInput.classList.add("modal-project-input-project");
     form.appendChild(modalProjectInput);
     const ProjectInformation = document.createElement("p");
@@ -447,6 +449,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     const modalTaskTitleInput = document.createElement("INPUT");
     modalTaskTitleInput.setAttribute("type", "text");
     modalTaskTitleInput.classList.add("modal-title-input-project");
+    modalTaskTitleInput.setAttribute("maxlength", "15");
     form.appendChild(modalTaskTitleInput);
     const modalTaskDueDate = document.createElement("p");
     modalTaskDueDate.classList.add("modal-due-date-project");
@@ -518,6 +521,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     const modalTaskDescriptionInput = document.createElement("TEXTAREA");
     modalTaskDescriptionInput.setAttribute("type", "text");
     modalTaskDescriptionInput.classList.add("modal-description-input-project");
+    modalTaskDescriptionInput.setAttribute("maxlength", "81");
     form.appendChild(modalTaskDescriptionInput);
     const submitButton = document.createElement("BUTTON");
     submitButton.classList.add("submitButton");
@@ -553,6 +557,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     const modalTaskTitleInput = document.createElement("INPUT");
     modalTaskTitleInput.setAttribute("type", "text");
     modalTaskTitleInput.classList.add("modal-title-input-task");
+    modalTaskTitleInput.setAttribute("maxlength", "15");
     form.appendChild(modalTaskTitleInput);
     const modalTaskDueDate = document.createElement("p");
     modalTaskDueDate.classList.add("modal-due-date-task");
@@ -624,6 +629,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     const modalTaskDescriptionInput = document.createElement("TEXTAREA");
     modalTaskDescriptionInput.setAttribute("type", "text");
     modalTaskDescriptionInput.classList.add("modal-description-input-task");
+    modalTaskDescriptionInput.setAttribute("maxlength", "81");
     form.appendChild(modalTaskDescriptionInput);
     const submitButton = document.createElement("BUTTON");
     submitButton.classList.add("submitButtonTask");
@@ -662,6 +668,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     modalTaskTitleInput.setAttribute("type", "text");
     modalTaskTitleInput.setAttribute("value", `${allTasks[index].title}`);
     modalTaskTitleInput.classList.add("modal-title-input-edit");
+    modalTaskTitleInput.setAttribute("maxlength", "15");
     form.appendChild(modalTaskTitleInput);
     const modalTaskDueDate = document.createElement("p");
     modalTaskDueDate.classList.add("modal-due-date-edit");
@@ -744,6 +751,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     modalTaskDescriptionInput.setAttribute("type", "text");
     modalTaskDescriptionInput.setAttribute("id", "edit-task-description");
     modalTaskDescriptionInput.classList.add("modal-description-input-edit");
+    modalTaskDescriptionInput.setAttribute("maxlength", "81");
     modalTaskDescriptionInput.value = `${allTasks[index].description}`;
     form.appendChild(modalTaskDescriptionInput);
     const submitButton = document.createElement("BUTTON");
