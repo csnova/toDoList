@@ -165,12 +165,15 @@ function printAll(idName) {
     newDiv.setAttribute(`id`, `task${i}`);
     if (task.priority == "High") {
       newDiv.style.borderColor = "red";
+      newDiv.style.backgroundColor = "LightCoral";
     }
     if (task.priority == "Medium") {
       newDiv.style.borderColor = "darkOrange";
+      newDiv.style.backgroundColor = "PeachPuff";
     }
     if (task.priority == "Low") {
       newDiv.style.borderColor = "gold";
+      newDiv.style.backgroundColor = "LemonChiffon";
     }
     taskBox.appendChild(newDiv);
     const taskCheck = document.createElement("INPUT");
@@ -272,6 +275,96 @@ function changeProject(idName) {
   removeElementsByClass("container");
   printAll(idName);
 }
+
+function newProject() {
+  // These use the field Ids to select the correct Input
+  const projectField = document.querySelector(".modal-project-input-project");
+  const titleField = document.querySelector(".modal-title-input-project");
+  const detailField = document.querySelector(
+    ".modal-description-input-project"
+  );
+  const dueDateField = document.querySelector(".modal-due-date-input-project");
+  const radioButtons = document.querySelectorAll(
+    'input[name="priority-type-project"]'
+  );
+  // Adds an event listener to submit button
+  const formField = document.querySelector("#newProjectForm");
+  formField.addEventListener("submit", (e) => {
+    // This goes through each radio button to save the name of the one that is selected
+    let selectedPriority;
+    if (document.getElementById("lowPriorityProject").checked) {
+      selectedPriority = "Low";
+    }
+    if (document.getElementById("mediumPriorityProject").checked) {
+      selectedPriority = "Medium";
+    }
+    if (document.getElementById("highPriorityProject").checked) {
+      selectedPriority = "High";
+    }
+    e.preventDefault();
+    console.log(
+      `${projectField.value}, ${titleField.value}, ${detailField.value}, ${selectedPriority}, ${dueDateField.value}`
+    );
+    addTaskToArray(
+      projectField.value,
+      titleField.value,
+      detailField.value,
+      selectedPriority,
+      dueDateField.value,
+      false
+    );
+    // Clears page and reloads with new task in array
+    removeElementsByClass("modal-content");
+    removeElementsByClass("container");
+    const modal = document.getElementById("myModal");
+    modal.style.display = "none";
+    printAll(`${projectField.value}`);
+  });
+}
+
+// function newTask() {
+//   // These use the field Ids to select the correct Input
+//   const projectField = document.querySelector(".modal-project-input-task");
+//   const titleField = document.querySelector(".modal-title-input-task");
+//   const detailField = document.querySelector(".modal-description-input-task");
+//   const dueDateField = document.querySelector(".modal-due-date-input-task");
+//   const radioButtons = document.querySelectorAll(
+//     'input[name="priority-type-task"]'
+//   );
+//   // Adds an event listener to submit button
+//   const formField = document.querySelector("#newTaskForm");
+//   formField.addEventListener("submit", (e) => {
+//     // This goes through each radio button to save the name of the one that is selected
+//     let selectedPriority;
+//     if (document.getElementById("lowPriorityTask").checked) {
+//       selectedPriority = "Low";
+//     }
+//     if (document.getElementById("mediumPriorityTask").checked) {
+//       selectedPriority = "Medium";
+//     }
+//     if (document.getElementById("highPriorityTask").checked) {
+//       selectedPriority = "High";
+//     }
+//     e.preventDefault();
+//     console.log(
+//       `${projectField.value}, ${titleField.value}, ${detailField.value}, ${selectedPriority}, ${dueDateField.value}`
+//     );
+//     addTaskToArray(
+//       projectField.value,
+//       titleField.value,
+//       detailField.value,
+//       selectedPriority,
+//       dueDateField.value,
+//       false
+//     );
+//     // Clears page and reloads with new task in array
+//     removeElementsByClass("modal-content");
+//     removeElementsByClass("container");
+//     const modal = document.getElementById("myModal");
+//     modal.style.display = "none";
+//     printAll(`${projectField.value}`);
+//   });
+// }
 
 function displayModal(idName, typeOfModal, currentArray, index) {
   //Creates the Modal
@@ -384,9 +477,9 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     const lowPriorityInput = document.createElement("INPUT");
     lowPriorityInput.classList.add("low-priority-input");
     lowPriorityInput.setAttribute("type", "radio");
-    lowPriorityInput.setAttribute("name", "priority-type");
-    lowPriorityInput.setAttribute("id", "lowPriority");
-    lowPriorityInput.setAttribute("value", "lowPriority");
+    lowPriorityInput.setAttribute("name", "priority-type-project");
+    lowPriorityInput.setAttribute("id", "lowPriorityProject");
+    lowPriorityInput.setAttribute("value", "Low");
     lowPriorityDiv.appendChild(lowPriorityInput);
     const lowPriorityLabel = document.createElement("LABEL");
     lowPriorityLabel.setAttribute("for", "lowPriority");
@@ -400,9 +493,9 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     const mediumPriorityInput = document.createElement("INPUT");
     mediumPriorityInput.classList.add("medium-priority-input");
     mediumPriorityInput.setAttribute("type", "radio");
-    mediumPriorityInput.setAttribute("name", "priority-type");
-    mediumPriorityInput.setAttribute("id", "mediumPriority");
-    mediumPriorityInput.setAttribute("value", "mediumPriority");
+    mediumPriorityInput.setAttribute("name", "priority-type-project");
+    mediumPriorityInput.setAttribute("id", "mediumPriorityProject");
+    mediumPriorityInput.setAttribute("value", "Medium");
     mediumPriorityDiv.appendChild(mediumPriorityInput);
     const mediumPriorityLabel = document.createElement("LABEL");
     mediumPriorityLabel.setAttribute("for", "mediumPriority");
@@ -416,9 +509,9 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     const highPriorityInput = document.createElement("INPUT");
     highPriorityInput.classList.add("high-priority-input");
     highPriorityInput.setAttribute("type", "radio");
-    highPriorityInput.setAttribute("name", "priority-type");
-    highPriorityInput.setAttribute("id", "highPriority");
-    highPriorityInput.setAttribute("value", "highPriority");
+    highPriorityInput.setAttribute("name", "priority-type-project");
+    highPriorityInput.setAttribute("id", "highPriorityProject");
+    highPriorityInput.setAttribute("value", "High");
     highPriorityDiv.appendChild(highPriorityInput);
     const highPriorityLabel = document.createElement("LABEL");
     highPriorityLabel.setAttribute("for", "highPriority");
@@ -440,6 +533,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     submitButton.setAttribute(`type`, `submit`);
     submitButton.textContent = "Submit";
     form.appendChild(submitButton);
+    newProject();
   }
   if (typeOfModal == `task`) {
     const modalTitle = document.createElement("p");
@@ -489,9 +583,9 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     const lowPriorityInput = document.createElement("INPUT");
     lowPriorityInput.classList.add("low-priority-input");
     lowPriorityInput.setAttribute("type", "radio");
-    lowPriorityInput.setAttribute("name", "priority-type");
-    lowPriorityInput.setAttribute("id", "lowPriority");
-    lowPriorityInput.setAttribute("value", "lowPriority");
+    lowPriorityInput.setAttribute("name", "priority-type-task");
+    lowPriorityInput.setAttribute("id", "lowPriorityTask");
+    lowPriorityInput.setAttribute("value", "Low");
     lowPriorityDiv.appendChild(lowPriorityInput);
     const lowPriorityLabel = document.createElement("LABEL");
     lowPriorityLabel.setAttribute("for", "lowPriority");
@@ -505,9 +599,9 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     const mediumPriorityInput = document.createElement("INPUT");
     mediumPriorityInput.classList.add("medium-priority-input");
     mediumPriorityInput.setAttribute("type", "radio");
-    mediumPriorityInput.setAttribute("name", "priority-type");
-    mediumPriorityInput.setAttribute("id", "mediumPriority");
-    mediumPriorityInput.setAttribute("value", "mediumPriority");
+    mediumPriorityInput.setAttribute("name", "priority-type-task");
+    mediumPriorityInput.setAttribute("id", "mediumPriorityTask");
+    mediumPriorityInput.setAttribute("value", "Medium");
     mediumPriorityDiv.appendChild(mediumPriorityInput);
     const mediumPriorityLabel = document.createElement("LABEL");
     mediumPriorityLabel.setAttribute("for", "mediumPriority");
@@ -521,9 +615,9 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     const highPriorityInput = document.createElement("INPUT");
     highPriorityInput.classList.add("high-priority-input");
     highPriorityInput.setAttribute("type", "radio");
-    highPriorityInput.setAttribute("name", "priority-type");
-    highPriorityInput.setAttribute("id", "highPriority");
-    highPriorityInput.setAttribute("value", "highPriority");
+    highPriorityInput.setAttribute("name", "priority-type-task");
+    highPriorityInput.setAttribute("id", "highPriorityTask");
+    highPriorityInput.setAttribute("value", "High");
     highPriorityDiv.appendChild(highPriorityInput);
     const highPriorityLabel = document.createElement("LABEL");
     highPriorityLabel.setAttribute("for", "highPriority");
@@ -545,6 +639,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     submitButton.setAttribute(`type`, `submit`);
     submitButton.textContent = "Submit";
     form.appendChild(submitButton);
+    // newTask();
   }
   if (typeOfModal == `edit`) {
     const modalTitle = document.createElement("p");

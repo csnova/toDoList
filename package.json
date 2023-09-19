@@ -17,6 +17,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "color": "^4.2.3",
     "date-fns": "^2.30.0"
   }
 }
