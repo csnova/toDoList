@@ -1,4 +1,4 @@
-import { getYear, getMonth, getDate, format } from "date-fns";
+import { format, addDays } from "date-fns";
 import Spiral from "./images/spiral.jpg";
 import Edit from "./images/edit.png";
 // <a href="https://www.flaticon.com/free-icons/delete" title="delete icons">Delete icons created by Ilham Fitrotul Hayat - Flaticon</a>
@@ -281,6 +281,23 @@ function changeProject(idName) {
   printAll(idName);
 }
 
+function getToday() {
+  let today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1;
+  let yyyy = today.getFullYear();
+
+  if (dd < 10) {
+    dd = "0" + dd;
+  }
+
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+  today = yyyy + "-" + mm + "-" + dd;
+  return today;
+}
+
 function newProject() {
   // These use the field Ids to select the correct Input
   const projectField = document.querySelector(".modal-project-input-project");
@@ -411,10 +428,6 @@ function displayModal(idName, typeOfModal, currentArray, index) {
   modalSection.classList.add("modal-section");
   modalContainer.appendChild(modalSection);
   if (typeOfModal == `info`) {
-    const modalTitle = document.createElement("p");
-    modalTitle.classList.add("modal-title-info");
-    modalTitle.textContent = `Title:`;
-    modalSection.appendChild(modalTitle);
     const modalTitleText = document.createElement("p");
     modalTitleText.classList.add("modal-title-text-info");
     modalTitleText.textContent = `${currentArray[index].title}`;
@@ -445,9 +458,9 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     const modalDueDateText = document.createElement("p");
     modalDueDateText.classList.add("modal-due-date-text-info");
     const dueDate = currentArray[index].dueDate;
-    let day = getDate(new Date(dueDate));
-    day = day + 1;
-    const year = getYear(new Date(dueDate));
+    const result = addDays(new Date(dueDate), 1);
+    const day = format(new Date(result), "do");
+    const year = format(new Date(dueDate), "y");
     const month = format(new Date(dueDate), "MMM");
     modalDueDateText.textContent = `${month} ${day} ${year}`;
     modalSection.appendChild(modalDueDateText);
@@ -477,6 +490,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     form.appendChild(modalProject);
     const modalProjectInput = document.createElement("INPUT");
     modalProjectInput.setAttribute("type", "text");
+    modalProjectInput.required = true;
     modalProjectInput.setAttribute("maxlength", "10");
     modalProjectInput.setAttribute("onkeypress", "return event.charCode != 32");
     modalProjectInput.classList.add("modal-project-input-project");
@@ -491,8 +505,9 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     form.appendChild(modalTaskTitle);
     const modalTaskTitleInput = document.createElement("INPUT");
     modalTaskTitleInput.setAttribute("type", "text");
+    modalTaskTitleInput.required = true;
     modalTaskTitleInput.classList.add("modal-title-input-project");
-    modalTaskTitleInput.setAttribute("maxlength", "15");
+    modalTaskTitleInput.setAttribute("maxlength", "25");
     form.appendChild(modalTaskTitleInput);
     const modalTaskDueDate = document.createElement("p");
     modalTaskDueDate.classList.add("modal-due-date-project");
@@ -500,6 +515,8 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     form.appendChild(modalTaskDueDate);
     const modalTaskDueDateInput = document.createElement("INPUT");
     modalTaskDueDateInput.setAttribute("type", "date");
+    const date = getToday();
+    modalTaskDueDateInput.setAttribute("value", `${date}`);
     modalTaskDueDateInput.classList.add("modal-due-date-input-project");
     form.appendChild(modalTaskDueDateInput);
     const modalTaskPriority = document.createElement("p");
@@ -518,6 +535,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     lowPriorityInput.setAttribute("name", "priority-type-project");
     lowPriorityInput.setAttribute("id", "lowPriorityProject");
     lowPriorityInput.setAttribute("value", "Low");
+    lowPriorityInput.setAttribute("checked", "checked");
     lowPriorityDiv.appendChild(lowPriorityInput);
     const lowPriorityLabel = document.createElement("LABEL");
     lowPriorityLabel.setAttribute("for", "lowPriority");
@@ -563,6 +581,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     form.appendChild(modalTaskDescription);
     const modalTaskDescriptionInput = document.createElement("TEXTAREA");
     modalTaskDescriptionInput.setAttribute("type", "text");
+    modalTaskDescriptionInput.required = true;
     modalTaskDescriptionInput.classList.add("modal-description-input-project");
     modalTaskDescriptionInput.setAttribute("maxlength", "81");
     form.appendChild(modalTaskDescriptionInput);
@@ -600,7 +619,8 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     const modalTaskTitleInput = document.createElement("INPUT");
     modalTaskTitleInput.setAttribute("type", "text");
     modalTaskTitleInput.classList.add("modal-title-input-task");
-    modalTaskTitleInput.setAttribute("maxlength", "15");
+    modalTaskTitleInput.setAttribute("maxlength", "25");
+    modalTaskTitleInput.required = true;
     form.appendChild(modalTaskTitleInput);
     const modalTaskDueDate = document.createElement("p");
     modalTaskDueDate.classList.add("modal-due-date-task");
@@ -609,6 +629,8 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     const modalTaskDueDateInput = document.createElement("INPUT");
     modalTaskDueDateInput.setAttribute("type", "date");
     modalTaskDueDateInput.classList.add("modal-due-date-input-task");
+    const date = getToday();
+    modalTaskDueDateInput.setAttribute("value", `${date}`);
     form.appendChild(modalTaskDueDateInput);
     const modalTaskPriority = document.createElement("p");
     modalTaskPriority.classList.add("modal-priority-task");
@@ -626,6 +648,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     lowPriorityInput.setAttribute("name", "priority-type-task");
     lowPriorityInput.setAttribute("id", "lowPriorityTask");
     lowPriorityInput.setAttribute("value", "Low");
+    lowPriorityInput.setAttribute("checked", "checked");
     lowPriorityDiv.appendChild(lowPriorityInput);
     const lowPriorityLabel = document.createElement("LABEL");
     lowPriorityLabel.setAttribute("for", "lowPriority");
@@ -673,6 +696,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     modalTaskDescriptionInput.setAttribute("type", "text");
     modalTaskDescriptionInput.classList.add("modal-description-input-task");
     modalTaskDescriptionInput.setAttribute("maxlength", "81");
+    modalTaskDescriptionInput.required = true;
     form.appendChild(modalTaskDescriptionInput);
     const submitButton = document.createElement("BUTTON");
     submitButton.classList.add("submitButtonTask");
@@ -709,7 +733,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     modalTaskTitleInput.setAttribute("type", "text");
     modalTaskTitleInput.setAttribute("value", `${allTasks[index].title}`);
     modalTaskTitleInput.classList.add("modal-title-input-edit");
-    modalTaskTitleInput.setAttribute("maxlength", "15");
+    modalTaskTitleInput.setAttribute("maxlength", "25");
     form.appendChild(modalTaskTitleInput);
     const modalTaskDueDate = document.createElement("p");
     modalTaskDueDate.classList.add("modal-due-date-edit");

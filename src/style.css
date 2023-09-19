@@ -258,18 +258,15 @@ h1 {
   grid-template-rows: 80px 20px 75px 75px 75px 175px;
 }
 
-.modal-title-info {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
 .modal-title-text-info {
-  grid-column-start: 2;
+  grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
+  font-size: 40px;
+  font-weight: 800;
+  justify-self: center;
+  align-self: center;
 }
 
 .underLine-info {
@@ -337,12 +334,6 @@ h1 {
 }
 
 .modal-title-info,
-.modal-title-text-info {
-  font-size: 40px;
-  align-self: center;
-}
-
-.modal-title-info,
 .modal-content-info,
 .modal-description-info,
 .modal-due-date-info,
@@ -351,7 +342,6 @@ h1 {
   font-weight: 800;
 }
 
-.modal-title-text-info,
 .modal-description-text-info,
 .modal-due-date-text-info,
 .modal-priority-text-info,
