@@ -358,7 +358,7 @@ function newTask(project) {
   });
 }
 
-function editTask(index) {
+function editTask(index, currentArray) {
   // These use the field Ids to select the correct Input
   const titleField = document.querySelector(".modal-title-input-edit");
   const detailField = document.querySelector(".modal-description-input-edit");
@@ -367,7 +367,6 @@ function editTask(index) {
   const formField = document.querySelector("#editForm");
   formField.addEventListener("submit", (e) => {
     // This goes through each radio button to save the name of the one that is selected
-    console.log("runs");
     let selectedPriority;
     if (document.getElementById("lowPriorityEdit").checked) {
       selectedPriority = "Low";
@@ -388,13 +387,11 @@ function editTask(index) {
     removeElementsByClass("container");
     const modal = document.getElementById("myModal");
     modal.style.display = "none";
-    printAll(`${allTasks[index].project}`);
-    console.log(
-      `${allTasks[index].project}, ${titleField.value}, ${detailField.value}, ${selectedPriority}, ${dueDateField.value}`
-    );
-    console.log(
-      `${allTasks[index].project}, ${allTasks[index].title}, ${allTasks[index].description}, ${allTasks[index].priority}, ${allTasks[index].dueDate}`
-    );
+    if (currentArray == allTasks) {
+      printAll(`None`);
+    } else {
+      printAll(`${allTasks[index].project}`);
+    }
   });
 }
 
@@ -798,7 +795,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     submitButton.setAttribute(`type`, `submit`);
     submitButton.textContent = "Submit";
     form.appendChild(submitButton);
-    editTask(index);
+    editTask(index, currentArray);
   }
 
   // Get the button that opens the modal
