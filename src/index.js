@@ -1,12 +1,5 @@
 import "./style.css";
-import { compareAsc, format } from "date-fns";
-import {
-  addTaskToArray,
-  task,
-  allTasks,
-  removeElementsByClass,
-  printAll,
-  makeProjectList,
-} from "./print.js";
+import { printAll, checkStorage } from "./print.js";
 
+checkStorage();
 printAll("None");

@@ -6,9 +6,48 @@ import Delete from "./images/delete.png";
 // <a href="https://www.flaticon.com/free-icons/plus" title="plus icons">Plus icons created by dmitri13 - Flaticon</a>
 import Add from "./images/add.png";
 
-const allTasks = [];
+let allTasks = [];
 let allProjects = [];
-let lookUp = 1;
+let currentLookUp;
+
+function checkStorage() {
+  if (!localStorage.getItem("lookUp")) {
+    setLookUp();
+    setAllTasks();
+  } else {
+    getLookUp();
+    getAllTasks();
+  }
+}
+
+function setLookUp() {
+  localStorage.setItem("lookUp", "1");
+  getLookUp();
+}
+
+function setAllTasks() {
+  allTasks = [];
+  localStorage.setItem("allTasks", JSON.stringify(allTasks));
+  getAllTasks;
+}
+
+function changeLookUp() {
+  localStorage.setItem("lookUp", `${currentLookUp}`);
+  getLookUp();
+}
+
+function changeAllTasks() {
+  localStorage.setItem("allTasks", JSON.stringify(allTasks));
+  getAllTasks();
+}
+
+function getLookUp() {
+  currentLookUp = localStorage.getItem("lookUp");
+}
+
+function getAllTasks() {
+  allTasks = JSON.parse(localStorage.getItem("allTasks"));
+}
 
 class task {
   constructor(project, title, description, priority, dueDate, checked) {
@@ -18,7 +57,8 @@ class task {
     this.priority = priority;
     this.dueDate = dueDate;
     this.checked = checked;
-    this.spot = lookUp++;
+    this.spot = currentLookUp++;
+    changeLookUp();
   }
   taskInfo() {
     let info = `Project: ${project} Title: ${title} Description: ${description} Priority: ${priority} Due Date: ${dueDate} Finished: ${checked}`;
@@ -43,6 +83,7 @@ function addTaskToArray(
     checked
   );
   allTasks.push(newTask);
+  changeAllTasks();
 }
 
 function removeElementsByClass(className) {
@@ -184,14 +225,14 @@ function printAll(idName) {
     taskCheck.addEventListener("change", (event) => {
       if (event.currentTarget.checked) {
         task.checked = true;
+        changeAllTasks();
       } else {
         task.checked = false;
+        changeAllTasks();
       }
       removeElementsByClass("container");
       printAll(currentMenu);
     });
-    // taskCheck.setAttribute(`onchange`, changeCheck(`completedTask${i}`));
-    // taskCheck.addEventListener("onchange", changeCheck(`completedTask${i}`));
     newDiv.appendChild(taskCheck);
     const taskTitle = document.createElement("h2");
     taskTitle.classList.add(`task${i}Title`);
@@ -233,6 +274,7 @@ function printAll(idName) {
         (task) => task.spot === currentArray[index].spot
       );
       allTasks.splice(currentSpot, 1);
+      changeAllTasks();
       removeElementsByClass("container");
       printAll(currentMenu);
     });
@@ -400,6 +442,7 @@ function editTask(index, currentArray) {
     allTasks[index].description = detailField.value;
     allTasks[index].priority = selectedPriority;
     allTasks[index].dueDate = dueDateField.value;
+    changeAllTasks();
     // Clears page and reloads with new task in array
     removeElementsByClass("modal-content");
     removeElementsByClass("container");
@@ -849,12 +892,4 @@ function displayModal(idName, typeOfModal, currentArray, index) {
   };
 }
 
-export {
-  task,
-  addTaskToArray,
-  allTasks,
-  removeElementsByClass,
-  printAll,
-  makeProjectList,
-  changeProject,
-};
+export { printAll, checkStorage };
