@@ -234,7 +234,6 @@ function printAll(idName) {
       allTasks.splice(currentSpot, 1);
       removeElementsByClass("container");
       printAll(currentMenu);
-      console.table(allTasks);
     });
 
     newDiv.appendChild(deleteButtonBox);
@@ -304,9 +303,6 @@ function newProject() {
       selectedPriority = "High";
     }
     e.preventDefault();
-    console.log(
-      `${projectField.value}, ${titleField.value}, ${detailField.value}, ${selectedPriority}, ${dueDateField.value}`
-    );
     addTaskToArray(
       projectField.value,
       titleField.value,
@@ -345,9 +341,6 @@ function newTask(project) {
       selectedPriority = "High";
     }
     e.preventDefault();
-    console.log(
-      `${projectField.value}, ${titleField.value}, ${detailField.value}, ${selectedPriority}, ${dueDateField.value}`
-    );
     addTaskToArray(
       projectField,
       titleField.value,
@@ -659,7 +652,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     form.appendChild(modalProject);
     const modalProjectInput = document.createElement("p");
     modalProjectInput.classList.add("modal-project-input-edit");
-    modalProjectInput.textContent = `${currentArray[index].project}`;
+    modalProjectInput.textContent = `${allTasks[index].project}`;
     form.appendChild(modalProjectInput);
     const modalTaskTitle = document.createElement("p");
     modalTaskTitle.classList.add("modal-task-title-edit");
@@ -667,7 +660,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     form.appendChild(modalTaskTitle);
     const modalTaskTitleInput = document.createElement("INPUT");
     modalTaskTitleInput.setAttribute("type", "text");
-    modalTaskTitleInput.setAttribute("value", `${currentArray[index].title}`);
+    modalTaskTitleInput.setAttribute("value", `${allTasks[index].title}`);
     modalTaskTitleInput.classList.add("modal-title-input-edit");
     form.appendChild(modalTaskTitleInput);
     const modalTaskDueDate = document.createElement("p");
@@ -676,10 +669,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     form.appendChild(modalTaskDueDate);
     const modalTaskDueDateInput = document.createElement("INPUT");
     modalTaskDueDateInput.setAttribute("type", "date");
-    modalTaskDueDateInput.setAttribute(
-      "value",
-      `${currentArray[index].dueDate}`
-    );
+    modalTaskDueDateInput.setAttribute("value", `${allTasks[index].dueDate}`);
     modalTaskDueDateInput.classList.add("modal-due-date-input-edit");
     form.appendChild(modalTaskDueDateInput);
     const modalTaskPriority = document.createElement("p");
@@ -698,7 +688,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     lowPriorityInput.setAttribute("name", "priority-type");
     lowPriorityInput.setAttribute("id", "lowPriority");
     lowPriorityInput.setAttribute("value", "lowPriority");
-    if (currentArray[index].priority == "Low") {
+    if (allTasks[index].priority == "Low") {
       lowPriorityInput.setAttribute("checked", "checked");
     }
     lowPriorityDiv.appendChild(lowPriorityInput);
@@ -717,7 +707,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     mediumPriorityInput.setAttribute("name", "priority-type");
     mediumPriorityInput.setAttribute("id", "mediumPriority");
     mediumPriorityInput.setAttribute("value", "mediumPriority");
-    if (currentArray[index].priority == "Medium") {
+    if (allTasks[index].priority == "Medium") {
       mediumPriorityInput.setAttribute("checked", "checked");
     }
     mediumPriorityDiv.appendChild(mediumPriorityInput);
@@ -736,7 +726,7 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     highPriorityInput.setAttribute("name", "priority-type");
     highPriorityInput.setAttribute("id", "highPriority");
     highPriorityInput.setAttribute("value", "highPriority");
-    if (currentArray[index].priority == "High") {
+    if (allTasks[index].priority == "High") {
       highPriorityInput.setAttribute("checked", "checked");
     }
     highPriorityDiv.appendChild(highPriorityInput);
@@ -752,11 +742,9 @@ function displayModal(idName, typeOfModal, currentArray, index) {
     form.appendChild(modalTaskDescription);
     const modalTaskDescriptionInput = document.createElement("TEXTAREA");
     modalTaskDescriptionInput.setAttribute("type", "text");
-    modalTaskDescriptionInput.setAttribute(
-      "value",
-      `${currentArray[index].description}`
-    );
+    modalTaskDescriptionInput.setAttribute("id", "edit-task-description");
     modalTaskDescriptionInput.classList.add("modal-description-input-edit");
+    modalTaskDescriptionInput.value = `${allTasks[index].description}`;
     form.appendChild(modalTaskDescriptionInput);
     const submitButton = document.createElement("BUTTON");
     submitButton.classList.add("submitButtonEdit");
