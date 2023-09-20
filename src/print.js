@@ -5,49 +5,14 @@ import Edit from "./images/edit.png";
 import Delete from "./images/delete.png";
 // <a href="https://www.flaticon.com/free-icons/plus" title="plus icons">Plus icons created by dmitri13 - Flaticon</a>
 import Add from "./images/add.png";
+import {
+  changeAllTasks,
+  changeLookUp,
+  allTasks,
+  currentLookUp,
+} from "../starUp";
 
-let allTasks = [];
 let allProjects = [];
-let currentLookUp;
-
-function checkStorage() {
-  if (!localStorage.getItem("lookUp")) {
-    setLookUp();
-    setAllTasks();
-  } else {
-    getLookUp();
-    getAllTasks();
-  }
-}
-
-function setLookUp() {
-  localStorage.setItem("lookUp", "1");
-  getLookUp();
-}
-
-function setAllTasks() {
-  allTasks = [];
-  localStorage.setItem("allTasks", JSON.stringify(allTasks));
-  getAllTasks;
-}
-
-function changeLookUp() {
-  localStorage.setItem("lookUp", `${currentLookUp}`);
-  getLookUp();
-}
-
-function changeAllTasks() {
-  localStorage.setItem("allTasks", JSON.stringify(allTasks));
-  getAllTasks();
-}
-
-function getLookUp() {
-  currentLookUp = localStorage.getItem("lookUp");
-}
-
-function getAllTasks() {
-  allTasks = JSON.parse(localStorage.getItem("allTasks"));
-}
 
 class task {
   constructor(project, title, description, priority, dueDate, checked) {
@@ -57,7 +22,7 @@ class task {
     this.priority = priority;
     this.dueDate = dueDate;
     this.checked = checked;
-    this.spot = currentLookUp++;
+    this.spot = currentLookUp;
     changeLookUp();
   }
   taskInfo() {
@@ -892,4 +857,4 @@ function displayModal(idName, typeOfModal, currentArray, index) {
   };
 }
 
-export { printAll, checkStorage };
+export { printAll };
