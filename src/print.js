@@ -50,9 +50,12 @@ function printAll(idName) {
   const sideBarBox = document.createElement("div");
   sideBarBox.classList.add("sideBarBox");
   sideBar.appendChild(sideBarBox);
+  const listBox = document.createElement("div");
+  listBox.classList.add("listBox");
+  sideBarBox.appendChild(listBox);
   const list = document.createElement("ul");
   list.classList.add("list");
-  sideBarBox.appendChild(list);
+  listBox.appendChild(list);
   const allList = document.createElement("li");
   allList.classList.add("allList");
   list.appendChild(allList);

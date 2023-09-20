@@ -20,6 +20,7 @@
 html {
   background-color: var(--light-color-background);
   font-family: eczar;
+  overflow: hidden;
 }
 
 .container {
@@ -79,6 +80,22 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.listBox {
+  height: 600px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.listBox::-webkit-scrollbar {
+  background: var(--accent-color);
+}
+
+.listBox::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  -webkit-border-radius: 5px;
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
 }
 
 ul {
@@ -141,6 +158,7 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
 }
 
 .taskBox {
@@ -148,6 +166,19 @@ h1 {
   grid-auto-rows: 70px;
   grid-gap: 10px;
   padding: 20px;
+  height: 540px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.taskBox::-webkit-scrollbar {
+  background: var(--lightest-color-background);
+}
+
+.taskBox::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  -webkit-border-radius: 5px;
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
 }
 
 .task {
