@@ -70,7 +70,7 @@ function printAll(idName) {
   const projectButton = document.createElement("BUTTON");
   projectButton.setAttribute(`id`, `None`);
   projectButton.classList.add("listButton");
-  projectButton.textContent = "Project";
+  projectButton.textContent = "Projects";
   projectList.appendChild(projectButton);
   const projects = document.createElement("ul");
   projects.classList.add("projects");
